@@ -7,20 +7,43 @@ export function Footer() {
         {/* Past FOUND Workshop */}
         <div className="flex flex-col gap-4">
           <h3 className="font-bold text-lg">Past Workshops</h3>
-          <span className="text-sm text-muted-foreground font-medium">
+          <a
+            href="https://iccv2025-found-workshop.limitlab.xyz/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+          >
             ICCV 2025 FOUND (1st)
-          </span>
+          </a>
         </div>
 
         {/* Related Workshop */}
         <div className="flex flex-col gap-4">
           <h3 className="font-bold text-lg">Related Workshops</h3>
-          <Link
-            to="https://eccv2026-limit-workshop.limitlab.xyz/"
+          <a
+            href="https://eccv2026-limit-workshop.limitlab.xyz/"
+            target="_blank"
+            rel="noreferrer"
             className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
           >
             ECCV 2026 LIMIT
-          </Link>
+          </a>
+          <a
+            href="https://cvpr2026-bigmac-workshop.limitlab.xyz/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+          >
+            CVPR 2026 BigMAC
+          </a>
+          <a
+            href="https://cvpr2026-vgi-workshop.limitlab.xyz/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+          >
+            CVPR 2026 VGI
+          </a>
         </div>
 
         {/* Links */}
