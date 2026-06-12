@@ -1,21 +1,22 @@
 import type { MetaDescriptor } from "react-router";
 
-const SITE_URL = "https://cvpr2026-bigmac-workshop.limitlab.xyz";
-const DEFAULT_IMAGE = `${SITE_URL}/bigmac-ogp.jpg`;
+const SITE_URL = "https://eccv2026-found-workshop.limitlab.xyz";
+const DEFAULT_IMAGE = `${SITE_URL}/found-ogp.jpg`;
 const DEFAULT_IMAGE_ALT =
-  "BigMAC Workshop at CVPR 2026 wordmark on a dark gradient background";
+  "FOUND Workshop at ECCV 2026 wordmark on a dark gradient background";
 const SITE_NAME =
-  "BigMAC: Big Model Adaptation for Computer Vision @ CVPR 2026";
+  "FOUND: Foundation Data for Industrial Tech Transfer @ ECCV 2026";
 const DEFAULT_DESCRIPTION =
-  "Official site for the CVPR 2026 Workshop on Big Model Adaptation for Computer Vision.";
+  "Official site for the ECCV 2026 Workshop on Foundation Data for Industrial Tech Transfer (FOUND).";
 const DEFAULT_KEYWORDS = [
-  "BigMAC Workshop",
-  "CVPR 2026",
-  "Big Model Adaptation",
-  "Foundation Models",
-  "Big Models",
-  "Adaptation",
-  "LIMIT Lab",
+  "FOUND Workshop",
+  "ECCV 2026",
+  "Foundation Data",
+  "Industrial Tech Transfer",
+  "Domain Shift",
+  "Physical AI",
+  "World Models",
+  "Computer Vision",
 ];
 
 type SeoConfig = {

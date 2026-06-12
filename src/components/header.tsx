@@ -15,7 +15,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
 
 const navItems = [
   { name: "Home", path: "/" },
-  { name: "Program", path: "/#program" },
+  { name: "Call for Papers", path: "/#cfp" },
   { name: "Speakers", path: "/#speakers" },
   { name: "Organizers", path: "/#organizers" },
   { name: "Contact", path: "/#contact" },
@@ -30,13 +30,13 @@ export function Header() {
             {/* <span className="font-bold text-xl">VGI 2026</span> */}
             <img
               src={blackLimitLabLogoWide}
-              alt="LIMIT Workshop logo"
+              alt="FOUND Workshop logo"
               className="object-contain h-16 w-auto dark:hidden transition-transform group-hover:scale-105"
               loading="lazy"
             />
             <img
               src={whiteLimitLabLogoWide}
-              alt="LIMIT Workshop logo"
+              alt="FOUND Workshop logo"
               className="object-contain h-16 w-auto hidden dark:block transition-transform group-hover:scale-105"
               loading="lazy"
             />
