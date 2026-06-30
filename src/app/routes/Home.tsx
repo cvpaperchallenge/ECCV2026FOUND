@@ -53,8 +53,8 @@ function Home() {
   const structuredData = generateWorkshopStructuredData({
     name: workshopData.home.title,
     description: workshopData.home.overview.mission,
-    startDate: "2026-09-08T09:00:00",
-    endDate: "2026-09-08T17:00:00",
+    startDate: "2026-09-09T09:00:00",
+    endDate: "2026-09-09T13:00:00",
     location: {
       name: workshopData.home.eventInfo.location,
       address: "Malmö, Sweden",
@@ -127,7 +127,7 @@ function Home() {
                   className="h-4 w-4 md:h-5 md:w-5 text-primary"
                   aria-hidden="true"
                 />
-                <time className="font-medium" dateTime="2026-09-08T09:00">
+                <time className="font-medium" dateTime="2026-09-09T09:00">
                   {workshopData.home.eventInfo.date}
                 </time>
               </div>
