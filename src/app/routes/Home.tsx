@@ -6,12 +6,13 @@ import {
   Info,
   CalendarPlus,
   Megaphone,
-  Store,
+  LayoutPanelTop,
   Eye,
   Users,
   TrendingUp,
   Lightbulb,
   Handshake,
+  ArrowDown,
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
@@ -492,9 +493,13 @@ function Home() {
               <p className="text-base leading-relaxed text-foreground/80">
                 {workshopData.sponsorship.intro}
               </p>
-              <div className="rounded-xl border border-primary/20 bg-primary/5 px-5 py-4">
+              <div className="rounded-xl border border-border/40 bg-background/60 backdrop-blur-sm px-5 py-4 flex items-start gap-3">
+                <Info
+                  className="h-4 w-4 shrink-0 text-primary mt-0.5"
+                  aria-hidden="true"
+                />
                 <p className="text-sm leading-relaxed text-foreground/80">
-                  <span className="font-semibold text-primary">
+                  <span className="font-semibold text-foreground">
                     Joint sponsorship:
                   </span>{" "}
                   {workshopData.sponsorship.jointNote}
@@ -513,8 +518,8 @@ function Home() {
                 const Icon =
                   benefit.icon === "Megaphone"
                     ? Megaphone
-                    : benefit.icon === "Store"
-                      ? Store
+                    : benefit.icon === "LayoutPanelTop"
+                      ? LayoutPanelTop
                       : Eye;
                 return (
                   <div
@@ -580,13 +585,14 @@ function Home() {
               {workshopData.sponsorship.cta.description}
             </p>
             <Button
+              variant="outline"
               size="lg"
               className="text-base px-8 py-6 rounded-xl"
               asChild
             >
               <a href="#contact">
-                <Mail className="h-4 w-4" />
                 {workshopData.sponsorship.cta.buttonText}
+                <ArrowDown className="h-4 w-4" />
               </a>
             </Button>
           </div>
