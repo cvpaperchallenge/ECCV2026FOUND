@@ -53,8 +53,8 @@ function Home() {
   const structuredData = generateWorkshopStructuredData({
     name: workshopData.home.title,
     description: workshopData.home.overview.mission,
-    startDate: "2026-09-08T09:00:00",
-    endDate: "2026-09-08T17:00:00",
+    startDate: "2026-09-09T09:00:00",
+    endDate: "2026-09-09T13:00:00",
     location: {
       name: workshopData.home.eventInfo.location,
       address: "Malmö, Sweden",
@@ -79,7 +79,13 @@ function Home() {
       <main className="container mx-auto px-6 py-12 space-y-24 xl:max-w-6xl">
         {/* Hero Section */}
         <section className="relative overflow-hidden rounded-3xl border px-6 py-14 md:px-8 md:py-24 lg:py-32 text-center shadow-2xl">
+          {/* Background Effects */}
           <div className="pointer-events-none absolute inset-0">
+            <img
+              src="/cover.jpg"
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-50 dark:opacity-45"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
             <div className="absolute inset-0 gradient-mesh opacity-50" />
           </div>
@@ -121,7 +127,7 @@ function Home() {
                   className="h-4 w-4 md:h-5 md:w-5 text-primary"
                   aria-hidden="true"
                 />
-                <time className="font-medium" dateTime="2026-09-08T09:00">
+                <time className="font-medium" dateTime="2026-09-09T09:00">
                   {workshopData.home.eventInfo.date}
                 </time>
               </div>
