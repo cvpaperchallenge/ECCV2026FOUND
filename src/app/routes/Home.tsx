@@ -15,7 +15,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 import { useLocation } from "react-router";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { NewsCarousel } from "../../components/news-carousel";
 
 import {
@@ -31,6 +31,27 @@ import type { Route } from "./+types/Home";
 import { buildMeta } from "@/lib/seo";
 import { generateWorkshopStructuredData } from "@/lib/structured-data";
 import { downloadICS, isPast, daysUntil } from "@/lib/calendar";
+
+const LIMIT_WORKSHOP_URL = "https://eccv2026-limit-workshop.limitlab.xyz/";
+
+function renderWithLimitLink(text: string) {
+  const parts = text.split("LIMIT Workshop");
+  return parts.map((part, i) => (
+    <Fragment key={i}>
+      {part}
+      {i < parts.length - 1 && (
+        <a
+          href={LIMIT_WORKSHOP_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="text-primary hover:text-primary/80 underline decoration-primary/30 underline-offset-4 transition-colors font-medium"
+        >
+          LIMIT Workshop
+        </a>
+      )}
+    </Fragment>
+  ));
+}
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
@@ -502,7 +523,7 @@ function Home() {
                   <span className="font-semibold text-foreground">
                     Joint sponsorship:
                   </span>{" "}
-                  {workshopData.sponsorship.jointNote}
+                  {renderWithLimitLink(workshopData.sponsorship.jointNote)}
                 </p>
               </div>
             </div>
@@ -582,7 +603,7 @@ function Home() {
               {workshopData.sponsorship.cta.title}
             </h3>
             <p className="text-base leading-relaxed text-foreground/80 max-w-2xl mx-auto">
-              {workshopData.sponsorship.cta.description}
+              {renderWithLimitLink(workshopData.sponsorship.cta.description)}
             </p>
             <Button
               variant="outline"
