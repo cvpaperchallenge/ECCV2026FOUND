@@ -5,9 +5,17 @@ import {
   ExternalLink,
   Info,
   CalendarPlus,
+  Megaphone,
+  LayoutPanelTop,
+  Eye,
+  Users,
+  TrendingUp,
+  Lightbulb,
+  Handshake,
+  ArrowDown,
 } from "lucide-react";
 import { useLocation } from "react-router";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { NewsCarousel } from "../../components/news-carousel";
 
 import {
@@ -23,6 +31,27 @@ import type { Route } from "./+types/Home";
 import { buildMeta } from "@/lib/seo";
 import { generateWorkshopStructuredData } from "@/lib/structured-data";
 import { downloadICS, isPast, daysUntil } from "@/lib/calendar";
+
+const LIMIT_WORKSHOP_URL = "https://eccv2026-limit-workshop.limitlab.xyz/";
+
+function renderWithLimitLink(text: string) {
+  const parts = text.split("LIMIT Workshop");
+  return parts.map((part, i) => (
+    <Fragment key={i}>
+      {part}
+      {i < parts.length - 1 && (
+        <a
+          href={LIMIT_WORKSHOP_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="text-primary hover:text-primary/80 underline decoration-primary/30 underline-offset-4 transition-colors font-medium"
+        >
+          LIMIT Workshop
+        </a>
+      )}
+    </Fragment>
+  ));
+}
 
 export const meta: Route.MetaFunction = () =>
   buildMeta({
@@ -461,6 +490,132 @@ function Home() {
                 </div>
               </a>
             ))}
+          </div>
+        </section>
+
+        {/* Sponsorship Section */}
+        <section id="sponsorship" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">{workshopData.sponsorship.title}</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+
+          {/* Intro card */}
+          <div className="relative overflow-hidden rounded-2xl p-px bg-gradient-to-br from-primary/40 via-primary/15 to-transparent">
+            <div className="rounded-2xl bg-card/80 backdrop-blur-sm p-8 md:p-10 space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Handshake className="h-5 w-5" />
+                </div>
+                <h3 className="text-2xl font-bold">
+                  {workshopData.sponsorship.subtitle}
+                </h3>
+              </div>
+              <p className="text-base leading-relaxed text-foreground/80">
+                {workshopData.sponsorship.intro}
+              </p>
+              <div className="rounded-xl border border-border/40 bg-background/60 backdrop-blur-sm px-5 py-4 flex items-start gap-3">
+                <Info
+                  className="h-4 w-4 shrink-0 text-primary mt-0.5"
+                  aria-hidden="true"
+                />
+                <p className="text-sm leading-relaxed text-foreground/80">
+                  <span className="font-semibold text-foreground">
+                    Joint sponsorship:
+                  </span>{" "}
+                  {renderWithLimitLink(workshopData.sponsorship.jointNote)}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Benefits */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold">
+              {workshopData.sponsorship.benefitsTitle}
+            </h3>
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+              {workshopData.sponsorship.benefits.map((benefit, index) => {
+                const Icon =
+                  benefit.icon === "Megaphone"
+                    ? Megaphone
+                    : benefit.icon === "LayoutPanelTop"
+                      ? LayoutPanelTop
+                      : Eye;
+                return (
+                  <div
+                    key={index}
+                    className="glass rounded-2xl p-6 md:p-7 border shadow-md card-hover space-y-3"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h4 className="text-lg font-bold leading-tight">
+                      {benefit.title}
+                    </h4>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {benefit.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Why Sponsor */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold">
+              {workshopData.sponsorship.whyTitle}
+            </h3>
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+              {workshopData.sponsorship.whyReasons.map((reason, index) => {
+                const Icon =
+                  reason.icon === "Users"
+                    ? Users
+                    : reason.icon === "TrendingUp"
+                      ? TrendingUp
+                      : Lightbulb;
+                return (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 rounded-2xl p-5 border border-border/50 bg-muted/10 card-hover"
+                  >
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <h4 className="text-base font-semibold leading-tight">
+                        {reason.title}
+                      </h4>
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {reason.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
+            <h3 className="text-xl font-bold">
+              {workshopData.sponsorship.cta.title}
+            </h3>
+            <p className="text-base leading-relaxed text-foreground/80 max-w-2xl mx-auto">
+              {renderWithLimitLink(workshopData.sponsorship.cta.description)}
+            </p>
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-base px-8 py-6 rounded-xl"
+              asChild
+            >
+              <a href="#contact">
+                {workshopData.sponsorship.cta.buttonText}
+                <ArrowDown className="h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </section>
 
