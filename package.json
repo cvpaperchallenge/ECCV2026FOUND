@@ -1,6 +1,6 @@
 {
-  "name": "workshop-website-template",
-  "description": "A modern workshop website template built with React Router, TypeScript, and Tailwind CSS",
+  "name": "eccv2026-found-workshop",
+  "description": "Official website for the FOUND Workshop @ ECCV 2026 — Foundation Data for Industrial Tech Transfer",
   "private": true,
   "version": "1.0.0",
   "type": "module",
