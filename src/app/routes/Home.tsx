@@ -13,6 +13,7 @@ import {
   Lightbulb,
   Handshake,
   ArrowDown,
+  UserRound,
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
@@ -412,48 +413,77 @@ function Home() {
             <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
           </div>
           <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {peopleData.program.invitedSpeakers.map((speaker, index) => (
-              <Card
-                key={index}
-                className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
-              >
-                <CardContent className="p-0">
-                  <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-                    <img
-                      src={speaker.photo}
-                      alt={`Photo of ${speaker.name}`}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-                </CardContent>
-                <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
-                  <CardTitle className="text-sm sm:text-xl">
-                    {speaker.name}
-                  </CardTitle>
-                  <p className="text-xs sm:text-base text-muted-foreground">
-                    {speaker.affiliation}
-                  </p>
-                </CardHeader>
-                <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-xs sm:text-sm group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                    asChild
-                  >
-                    <a
-                      href={speaker.website}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-1 sm:gap-2"
+            {peopleData.program.invitedSpeakers.map((speaker, index) => {
+              const isTba = "tba" in speaker && speaker.tba === true;
+              return (
+                <Card
+                  key={index}
+                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
+                >
+                  <CardContent className="p-0">
+                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
+                      {isTba ? (
+                        <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
+                          <UserRound
+                            className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
+                            strokeWidth={1.5}
+                          />
+                          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest opacity-60">
+                            Coming Soon
+                          </span>
+                        </div>
+                      ) : (
+                        <img
+                          src={speaker.photo}
+                          alt={`Photo of ${speaker.name}`}
+                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  </CardContent>
+                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                    <CardTitle
+                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
                     >
-                      Profile <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                    </a>
-                  </Button>
-                </div>
-              </Card>
-            ))}
+                      {speaker.name}
+                    </CardTitle>
+                    <p className="text-xs sm:text-base text-muted-foreground">
+                      {isTba ? "Speaker to be announced" : speaker.affiliation}
+                    </p>
+                  </CardHeader>
+                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className={`w-full text-xs sm:text-sm ${
+                        isTba
+                          ? "opacity-50 cursor-not-allowed"
+                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      }`}
+                      disabled={isTba}
+                      asChild={!isTba}
+                    >
+                      {isTba ? (
+                        <span className="flex items-center justify-center gap-1 sm:gap-2">
+                          Profile (Coming Soon)
+                        </span>
+                      ) : (
+                        <a
+                          href={speaker.website}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center justify-center gap-1 sm:gap-2"
+                        >
+                          Profile{" "}
+                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </a>
+                      )}
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </section>
 
