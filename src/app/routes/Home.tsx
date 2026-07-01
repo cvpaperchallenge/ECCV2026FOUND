@@ -290,7 +290,12 @@ function Home() {
               <h2 className="font-bold">Latest News</h2>
               <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
             </div>
-            <NewsCarousel items={workshopData.home.latestNews} />
+            <NewsCarousel
+              items={[...workshopData.home.latestNews].sort(
+                (a, b) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime(),
+              )}
+            />
           </section>
         </div>
 
