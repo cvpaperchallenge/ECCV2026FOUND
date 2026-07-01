@@ -60,7 +60,7 @@ export function Footer() {
               to="/#cfp"
               className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
             >
-              Call for Papers
+              Poster Nominations
             </Link>
             <Link
               to="/#speakers"

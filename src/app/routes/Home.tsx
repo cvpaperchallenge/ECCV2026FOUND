@@ -180,7 +180,7 @@ function Home() {
                 className="text-sm md:text-base px-6 py-4 md:px-8 md:py-6 rounded-xl opacity-50 cursor-not-allowed"
                 disabled
               >
-                Submit via OpenReview (Coming Soon)
+                Submit Nomination (Coming Soon)
               </Button>
               <Button
                 variant="outline"
@@ -207,15 +207,15 @@ function Home() {
               return (
                 <div
                   key={index}
-                  className={`glass rounded-xl p-6 shadow-md border card-hover group ${
+                  className={`glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
                     past ? "opacity-50" : ""
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-center gap-2">
+                  <div className="flex items-start justify-between gap-3 flex-1">
+                    <div className="flex-1 flex flex-col space-y-2">
+                      <div className="flex items-start gap-2 min-h-[2.5rem]">
                         <Calendar
-                          className={`h-4 w-4 shrink-0 ${
+                          className={`h-4 w-4 shrink-0 mt-0.5 ${
                             past ? "text-muted-foreground" : "text-primary"
                           }`}
                         />
@@ -236,20 +236,22 @@ function Home() {
                       >
                         {item.title}
                       </h3>
-                      {!past && days !== null && (
-                        <p className="text-xs font-semibold text-primary">
-                          {days === 0
-                            ? "Today!"
-                            : days === 1
-                              ? "Tomorrow!"
-                              : `in ${days} days`}
-                        </p>
-                      )}
-                      {past && (
-                        <p className="text-xs font-semibold text-muted-foreground">
-                          Ended
-                        </p>
-                      )}
+                      <div className="mt-auto">
+                        {!past && days !== null && (
+                          <p className="text-xs font-semibold text-primary">
+                            {days === 0
+                              ? "Today!"
+                              : days === 1
+                                ? "Tomorrow!"
+                                : `in ${days} days`}
+                          </p>
+                        )}
+                        {past && (
+                          <p className="text-xs font-semibold text-muted-foreground">
+                            Ended
+                          </p>
+                        )}
+                      </div>
                     </div>
                     <button
                       onClick={() => downloadICS(item.title, item.date)}
@@ -272,13 +274,13 @@ function Home() {
           <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
             <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
             <p className="text-base leading-relaxed">
-              We are accepting paper submissions for the FOUND Workshop at ECCV
-              2026. The submission deadline is{" "}
+              We are accepting self-nominations to present a poster at the FOUND
+              Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
               <span className="font-semibold text-primary">
-                Saturday, July 18, 2026, 23:59 AoE
+                Tuesday, August 25, 2026, 23:59 AoE
               </span>
-              . Please check the topics of interest below. The OpenReview
-              submission site will be announced soon.
+              . Please check the topics of interest below. The Google Form for
+              nominations will be announced soon.
             </p>
           </div>
 
@@ -336,33 +338,73 @@ function Home() {
               Physical AI and World Models:
             </p>
             <div className="grid gap-4 md:grid-cols-2">
-              {workshopData.callForPapers.topics.core.map((topic, index) => (
-                <div
-                  key={index}
-                  className="glass flex items-start gap-4 rounded-xl p-6 border card-hover"
-                >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">
-                    {index + 1}
+              {workshopData.callForPosterNominations.topics.core.map(
+                (topic, index) => (
+                  <div
+                    key={index}
+                    className="glass flex items-start gap-4 rounded-xl p-6 border card-hover"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">
+                      {index + 1}
+                    </div>
+                    <p className="text-base leading-relaxed pt-1">{topic}</p>
                   </div>
-                  <p className="text-base leading-relaxed pt-1">{topic}</p>
-                </div>
-              ))}
+                ),
+              )}
             </div>
           </div>
         </section>
 
-        {/* Call for Papers Section */}
+        {/* Call for Poster Nominations Section */}
         <section id="cfp" className="space-y-8">
           <div className="space-y-3">
-            <h2 className="font-bold">Call for Papers</h2>
+            <h2 className="font-bold">Call for Poster Nominations</h2>
             <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
           </div>
 
-          {/* Submission Guidelines */}
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {workshopData.callForPosterNominations.intro}
+          </p>
+
+          {/* Format Notice */}
+          <div className="glass-strong rounded-2xl p-8 shadow-lg space-y-4">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">
+                {workshopData.callForPosterNominations.formatNotice.title}
+              </h3>
+            </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.intro}
+            </p>
+            <ul className="space-y-2.5">
+              {workshopData.callForPosterNominations.formatNotice.points.map(
+                (point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <p className="text-base leading-relaxed">
+                      <span className="font-semibold text-foreground">
+                        {point.label}
+                      </span>{" "}
+                      <span className="text-foreground/80">{point.text}</span>
+                    </p>
+                  </li>
+                ),
+              )}
+            </ul>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.closing}
+            </p>
+          </div>
+
+          {/* Nomination Guidelines */}
           <div className="glass rounded-2xl p-8 md:p-10 border shadow-lg space-y-6">
-            <h3 className="text-xl font-bold">Submission Guidelines</h3>
+            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
             <ul className="space-y-3">
-              {workshopData.callForPapers.paperFormat.submissionGuidelines.map(
+              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
                 (guideline, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
@@ -375,18 +417,24 @@ function Home() {
             </ul>
           </div>
 
-          {/* Review & Publication */}
+          {/* Selection & Presentation */}
           <div className="grid gap-6 md:grid-cols-2">
             <div className="glass rounded-2xl p-8 border shadow-md space-y-3">
-              <h3 className="text-lg font-bold">Review Process</h3>
+              <h3 className="text-lg font-bold">Selection Process</h3>
               <p className="text-base leading-relaxed text-foreground/80">
-                {workshopData.callForPapers.paperFormat.reviewProcess}
+                {
+                  workshopData.callForPosterNominations.nominationFormat
+                    .selectionProcess
+                }
               </p>
             </div>
             <div className="glass rounded-2xl p-8 border shadow-md space-y-3">
-              <h3 className="text-lg font-bold">Publication</h3>
+              <h3 className="text-lg font-bold">Presentation Format</h3>
               <p className="text-base leading-relaxed text-foreground/80">
-                {workshopData.callForPapers.paperFormat.publication}
+                {
+                  workshopData.callForPosterNominations.nominationFormat
+                    .presentationFormat
+                }
               </p>
             </div>
           </div>
@@ -394,14 +442,14 @@ function Home() {
           {/* Submit Button */}
           <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
             <p className="text-base leading-relaxed">
-              {workshopData.callForPapers.submission.description}
+              {workshopData.callForPosterNominations.submission.description}
             </p>
             <Button
               size="lg"
               className="text-base px-8 py-6 rounded-xl opacity-50 cursor-not-allowed"
               disabled
             >
-              Submit via OpenReview (Coming Soon)
+              Submit Nomination (Coming Soon)
             </Button>
           </div>
         </section>
