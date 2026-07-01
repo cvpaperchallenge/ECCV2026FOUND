@@ -119,7 +119,7 @@ function generateICSContent(
   const icsContent = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Workshop Template//EN",
+    "PRODID:-//FOUND Workshop @ ECCV 2026//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
@@ -130,7 +130,7 @@ function generateICSContent(
     description ? `DESCRIPTION:${description}` : "",
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
-    `UID:${Date.now()}@workshop-template.com`,
+    `UID:${Date.now()}@eccv2026-found-workshop.limitlab.xyz`,
     "END:VEVENT",
     "END:VCALENDAR",
   ]
