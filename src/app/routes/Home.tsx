@@ -86,8 +86,8 @@ function Home() {
     startDate: "2026-09-09T09:00:00",
     endDate: "2026-09-09T13:00:00",
     location: {
-      name: workshopData.home.eventInfo.location,
-      address: "Malmö, Sweden",
+      name: workshopData.home.eventInfo.venue,
+      address: workshopData.home.eventInfo.location,
     },
     organizer: {
       name: "FOUND Workshop Organizing Committee",
@@ -151,33 +151,46 @@ function Home() {
             </div>
 
             {/* Event Info */}
-            <div className="flex flex-row items-center justify-center gap-3 sm:gap-8 text-sm md:text-lg">
-              <div className="glass flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl shadow-md">
+            <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 sm:gap-4 text-sm md:text-base w-full max-w-2xl">
+              <div className="glass flex flex-1 items-center gap-3 md:gap-4 px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-md">
                 <Calendar
-                  className="h-4 w-4 md:h-5 md:w-5 text-primary"
+                  className="h-5 w-5 md:h-6 md:w-6 text-primary shrink-0"
                   aria-hidden="true"
                 />
-                <time className="font-medium" dateTime="2026-09-09T09:00">
-                  {workshopData.home.eventInfo.date}
-                </time>
+                <div className="flex flex-col leading-tight text-left min-w-0">
+                  <time
+                    className="font-semibold truncate"
+                    dateTime="2026-09-09T09:00"
+                  >
+                    {workshopData.home.eventInfo.date}
+                  </time>
+                  <span className="text-xs md:text-sm font-normal text-muted-foreground truncate">
+                    {workshopData.home.eventInfo.time}
+                  </span>
+                </div>
               </div>
-              <div className="glass flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl shadow-md">
+              <div className="glass flex flex-1 items-center gap-3 md:gap-4 px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-md">
                 <MapPin
-                  className="h-4 w-4 md:h-5 md:w-5 text-primary"
+                  className="h-5 w-5 md:h-6 md:w-6 text-primary shrink-0"
                   aria-hidden="true"
                 />
-                <address className="font-medium not-italic">
-                  {workshopData.home.eventInfo.location}
+                <address className="not-italic flex flex-col leading-tight text-left min-w-0">
+                  <span className="font-semibold truncate">
+                    {workshopData.home.eventInfo.venue}
+                  </span>
+                  <span className="text-xs md:text-sm font-normal text-muted-foreground truncate">
+                    {workshopData.home.eventInfo.location}
+                  </span>
                 </address>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
               <Button
                 variant="outline"
                 size="lg"
-                className="text-sm md:text-base px-6 py-4 md:px-8 md:py-6 rounded-xl opacity-50 cursor-not-allowed"
+                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl opacity-50 cursor-not-allowed w-full"
                 disabled
               >
                 Submit Nomination (Coming Soon)
@@ -185,7 +198,7 @@ function Home() {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-sm md:text-base px-6 py-4 md:px-8 md:py-6 rounded-xl opacity-50 cursor-not-allowed"
+                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl opacity-50 cursor-not-allowed w-full"
                 disabled
               >
                 View Program (Coming Soon)
@@ -277,7 +290,7 @@ function Home() {
               We are accepting self-nominations to present a poster at the FOUND
               Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
               <span className="font-semibold text-primary">
-                Tuesday, August 25, 2026, 23:59 AoE
+                Wednesday, August 19, 2026, 23:59 AoE
               </span>
               . Please check the topics of interest below. The Google Form for
               nominations will be announced soon.

@@ -4,7 +4,9 @@
     "tagline": "Bridging Academic Progress and Practical Impact through Domain-Grounded Data",
     "subtitle": "ECCV 2026 Workshop",
     "eventInfo": {
-      "date": "September 9, 2026 (AM)",
+      "date": "September 9, 2026",
+      "time": "Morning Session",
+      "venue": "Malmö Arena and Malmömässan",
       "location": "Malmö, Sweden"
     },
     "overview": {
@@ -20,11 +22,11 @@
     "importantDates": [
       {
         "title": "Nomination Deadline",
-        "date": "August 25, 2026, AoE"
+        "date": "August 19, 2026, AoE"
       },
       {
         "title": "Final Notification",
-        "date": "September 1, 2026, AoE"
+        "date": "August 26, 2026, AoE"
       },
       {
         "title": "Workshop Date",
@@ -40,7 +42,7 @@
       {
         "title": "Call for Poster Nominations opened",
         "date": "July 1, 2026",
-        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. The nomination deadline is August 25, 2026, 23:59 AoE. Please check the Call for Poster Nominations section for details."
+        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. The nomination deadline is August 19, 2026, 23:59 AoE. Please check the Call for Poster Nominations section for details."
       }
     ]
   },
@@ -50,12 +52,12 @@
     "importantDates": [
       {
         "title": "Nomination Deadline",
-        "date": "August 25, 2026, AoE",
+        "date": "August 19, 2026, AoE",
         "description": "Submit your poster nomination via the Google Form by this date"
       },
       {
         "title": "Final Notification",
-        "date": "September 1, 2026, AoE",
+        "date": "August 26, 2026, AoE",
         "description": "Invitations are sent on a rolling basis; all final decisions announced by this date"
       },
       {
@@ -192,8 +194,8 @@
           "text": "Invitations do not come with any official publication or Springer proceedings."
         },
         {
-          "label": "Nothing is published on this website.",
-          "text": "Poster contents are not posted online; information shared with us stays within the workshop audience."
+          "label": "Only titles and presenters are listed on this website.",
+          "text": "Abstracts, posters, and other materials are not posted online and stay within the workshop audience."
         }
       ],
       "closing": "You are therefore welcome to nominate work that has already been accepted elsewhere, as well as work in progress that you would prefer to keep in a closed setting."
@@ -293,7 +295,7 @@
         "type": "Location",
         "icon": "MapPin",
         "description": "The workshop will be held at:",
-        "value": "Malmö, Sweden (Room TBD)"
+        "value": "Malmö Arena and Malmömässan\nMalmö, Sweden"
       }
     ],
     "contactForm": {
@@ -335,7 +337,7 @@
       },
       {
         "question": "When will invitations be announced?",
-        "answer": "Invitations are sent on a rolling basis as nominations are reviewed. All final decisions will be communicated by September 1, 2026."
+        "answer": "Invitations are sent on a rolling basis as nominations are reviewed. All final decisions will be communicated by August 26, 2026."
       },
       {
         "question": "Is there a registration fee?",
