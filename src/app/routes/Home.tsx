@@ -158,7 +158,10 @@ function Home() {
                   aria-hidden="true"
                 />
                 <div className="flex flex-col leading-tight text-left min-w-0">
-                  <time className="font-semibold truncate" dateTime="2026-09-09T09:00">
+                  <time
+                    className="font-semibold truncate"
+                    dateTime="2026-09-09T09:00"
+                  >
                     {workshopData.home.eventInfo.date}
                   </time>
                   <span className="text-xs md:text-sm font-normal text-muted-foreground truncate">
