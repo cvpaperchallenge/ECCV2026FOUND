@@ -19,16 +19,12 @@
     },
     "importantDates": [
       {
-        "title": "Paper Submission Deadline",
-        "date": "July 18, 2026, AoE"
+        "title": "Nomination Deadline",
+        "date": "August 25, 2026, AoE"
       },
       {
-        "title": "Author Notification",
-        "date": "August 5, 2026, AoE"
-      },
-      {
-        "title": "Camera-Ready Deadline",
-        "date": "August 17, 2026, AoE"
+        "title": "Final Notification",
+        "date": "September 1, 2026, AoE"
       },
       {
         "title": "Workshop Date",
@@ -38,13 +34,13 @@
     "latestNews": [
       {
         "title": "Workshop page open",
-        "date": "June 12, 2026",
+        "date": "June 30, 2026",
         "content": "We are excited to announce that the 2nd FOUND Workshop page for ECCV 2026 is now live. We will continue to add information, so please check back regularly for updates."
       },
       {
-        "title": "Call for Papers announced",
-        "date": "June 12, 2026",
-        "content": "We are now accepting paper submissions for the FOUND Workshop at ECCV 2026. The submission deadline is July 18, 2026, 23:59 AoE. Please check the Call for Papers section for detailed submission guidelines."
+        "title": "Call for Poster Nominations opened",
+        "date": "July 1, 2026",
+        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. The nomination deadline is August 25, 2026, 23:59 AoE. Please check the Call for Poster Nominations section for details."
       }
     ]
   },
@@ -53,19 +49,14 @@
     "subtitle": "Workshop program",
     "importantDates": [
       {
-        "title": "Paper Submission Deadline",
-        "date": "July 18, 2026, AoE",
-        "description": "Submit your papers by this date"
+        "title": "Nomination Deadline",
+        "date": "August 25, 2026, AoE",
+        "description": "Submit your poster nomination via the Google Form by this date"
       },
       {
-        "title": "Author Notification",
-        "date": "August 5, 2026, AoE",
-        "description": "Authors will be notified of acceptance"
-      },
-      {
-        "title": "Camera-Ready Deadline",
-        "date": "August 17, 2026, AoE",
-        "description": "Final versions due"
+        "title": "Final Notification",
+        "date": "September 1, 2026, AoE",
+        "description": "Invitations are sent on a rolling basis; all final decisions announced by this date"
       },
       {
         "title": "Workshop Date",
@@ -111,7 +102,7 @@
           {
             "time": "10:50 - 11:20",
             "session": "Invited Talk 4",
-            "presenter": "Gianluca Corrado (tentative)",
+            "presenter": "To Be Announced",
             "slides": ""
           },
           {
@@ -174,9 +165,10 @@
       }
     }
   },
-  "callForPapers": {
-    "title": "Call for Papers",
-    "subtitle": "Submit your research to the FOUND Workshop",
+  "callForPosterNominations": {
+    "title": "Call for Poster Nominations",
+    "subtitle": "Self-nominate to present at the Poster Session",
+    "intro": "Nominate work you would like to present as a poster at the FOUND Workshop Poster Session. Selected nominations will be invited to present in person.",
     "topics": {
       "core": [
         "Foundation Data creation: collection, curation, and labeling for non-Internet and domain-specific settings",
@@ -187,38 +179,56 @@
         "Deployment-aligned evaluation protocols and responsible data governance for real-world AI"
       ]
     },
-    "paperFormat": {
-      "submissionGuidelines": [
-        "Submissions must be handled electronically via the OpenReview submission website",
-        "Submissions must be anonymized",
-        "Formatted according to ECCV 2026 template",
-        "Papers up to 8 pages for publication in the Springer proceedings, excluding references",
-        "Follow the ECCV 2026 Submission Policies"
+    "formatNotice": {
+      "title": "About this format",
+      "intro": "Unlike a standard peer-reviewed CFP, this workshop uses a self-nomination and curatorial invitation format. Please note:",
+      "points": [
+        {
+          "label": "No strict double-blind review.",
+          "text": "Nominations are reviewed openly by the organizing committee for topical fit; invited presenters simply present a poster in person at the workshop."
+        },
+        {
+          "label": "No proceedings.",
+          "text": "Invitations do not come with any official publication or Springer proceedings."
+        },
+        {
+          "label": "Nothing is published on this website.",
+          "text": "Poster contents are not posted online; information shared with us stays within the workshop audience."
+        }
       ],
-      "reviewProcess": "All submissions will undergo a double-blind peer review process. The review process will involve over 100 reviewers from previous FOUND workshops and the LIMIT.Lab/xpaper.challenge community.",
-      "publication": "Accepted papers will be published in the Springer proceedings and presented at the workshop."
+      "closing": "You are therefore welcome to nominate work that has already been accepted elsewhere, as well as work in progress that you would prefer to keep in a closed setting."
+    },
+    "nominationFormat": {
+      "nominationGuidelines": [
+        "Nominations are submitted via a Google Form (link to be announced)",
+        "Provide a presentation title, a short abstract (~200 words), and presenter name and affiliation",
+        "Optionally include a link to a related paper, preprint, project page, or code repository",
+        "Anonymization is not required — nominations are reviewed openly by the organizers",
+        "Work at any stage is welcome: published, in submission, or in progress"
+      ],
+      "selectionProcess": "Nominations are curated by the organizing committee based on topical fit with the workshop, potential to spark discussion, and the overall balance of the poster session. There is no scored peer review; selected presenters will be invited by email.",
+      "presentationFormat": "Selected work will be showcased at the Poster Session during the workshop. There are no proceedings and no page-limit requirements. At least one presenter is expected to attend and present the poster in person."
     },
     "submission": {
-      "description": "The OpenReview submission website will be available soon. Please check back for updates.",
+      "description": "The Google Form for nominations will be available soon. Please check back for updates.",
       "url": ""
     },
-    "bestPaperAwards": "We will present Best Paper and Best Student Paper awards to recognize outstanding contributions. Award winners will receive certificates and will be highlighted during the workshop.",
     "faq": [
       {
-        "question": "Can I submit a paper that is under review elsewhere?",
-        "answer": "No, submissions must be original and not under review at any other conference, workshop, or journal during the review period."
+        "question": "Can I nominate work that has already been published?",
+        "answer": "Yes. Nominations may include published, unpublished, or work in progress, as long as it aligns with the workshop's topics of interest."
       },
       {
-        "question": "What is the page limit for submissions?",
-        "answer": "Papers up to 8 pages, excluding references, for publication in the Springer proceedings."
+        "question": "What information should I include in the nomination?",
+        "answer": "A presentation title, a short abstract (~200 words), presenter name and affiliation, and optionally a link to a related paper, preprint, or project page."
       },
       {
-        "question": "Is the review process double-blind?",
-        "answer": "Yes, all submissions must be anonymized for double-blind review."
+        "question": "How are nominations selected?",
+        "answer": "Selections are made by the organizing committee based on topical fit and the overall balance of the poster session. There is no scored peer review."
       },
       {
-        "question": "Do I need to attend the workshop if my paper is accepted?",
-        "answer": "Yes, at least one author of each accepted paper must register for and attend the workshop to present the work."
+        "question": "Do I need to attend the workshop in person if invited?",
+        "answer": "Yes. Invited presenters are expected to attend and present their poster in person during the workshop."
       }
     ]
   },
@@ -237,7 +247,7 @@
       {
         "icon": "LayoutPanelTop",
         "title": "Dedicated Space at the Poster Session",
-        "description": "A reserved board and floor space for sponsors during the Invited Poster Session. Distributing novelties and informational materials is welcome; a dedicated table can be arranged in advance by coordinating with the organizers."
+        "description": "A reserved board and floor space for sponsors during the Poster Session. Distributing novelties and informational materials is welcome; a dedicated table can be arranged in advance by coordinating with the organizers."
       },
       {
         "icon": "Eye",
@@ -320,12 +330,12 @@
     },
     "faq": [
       {
-        "question": "Where can I submit my paper?",
-        "answer": "Please submit your paper via the OpenReview submission website. The submission link will be available in the Call for Papers section."
+        "question": "How do I nominate a poster?",
+        "answer": "Please submit your nomination via the Google Form linked in the Call for Poster Nominations section. The form URL will be announced soon."
       },
       {
-        "question": "When will accepted papers be announced?",
-        "answer": "All decisions will be communicated by August 5, 2026."
+        "question": "When will invitations be announced?",
+        "answer": "Invitations are sent on a rolling basis as nominations are reviewed. All final decisions will be communicated by September 1, 2026."
       },
       {
         "question": "Is there a registration fee?",

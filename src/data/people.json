@@ -95,10 +95,11 @@
         "website": "https://www.amirbar.net"
       },
       {
-        "name": "Gianluca Corrado",
-        "affiliation": "Wayve",
-        "photo": "/program/gianluca.corrado-512x512.jpg",
-        "website": "https://scholar.google.com/citations?user=POZPkQgAAAAJ"
+        "name": "To Be Announced",
+        "affiliation": "",
+        "photo": "",
+        "website": "",
+        "tba": true
       }
     ],
     "acceptedPapers": {
