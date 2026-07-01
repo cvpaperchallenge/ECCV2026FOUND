@@ -20,11 +20,11 @@
     "importantDates": [
       {
         "title": "Nomination Deadline",
-        "date": "August 25, 2026, AoE"
+        "date": "August 19, 2026, AoE"
       },
       {
         "title": "Final Notification",
-        "date": "September 1, 2026, AoE"
+        "date": "August 26, 2026, AoE"
       },
       {
         "title": "Workshop Date",
@@ -40,7 +40,7 @@
       {
         "title": "Call for Poster Nominations opened",
         "date": "July 1, 2026",
-        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. The nomination deadline is August 25, 2026, 23:59 AoE. Please check the Call for Poster Nominations section for details."
+        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. The nomination deadline is August 19, 2026, 23:59 AoE. Please check the Call for Poster Nominations section for details."
       }
     ]
   },
@@ -50,12 +50,12 @@
     "importantDates": [
       {
         "title": "Nomination Deadline",
-        "date": "August 25, 2026, AoE",
+        "date": "August 19, 2026, AoE",
         "description": "Submit your poster nomination via the Google Form by this date"
       },
       {
         "title": "Final Notification",
-        "date": "September 1, 2026, AoE",
+        "date": "August 26, 2026, AoE",
         "description": "Invitations are sent on a rolling basis; all final decisions announced by this date"
       },
       {
@@ -335,7 +335,7 @@
       },
       {
         "question": "When will invitations be announced?",
-        "answer": "Invitations are sent on a rolling basis as nominations are reviewed. All final decisions will be communicated by September 1, 2026."
+        "answer": "Invitations are sent on a rolling basis as nominations are reviewed. All final decisions will be communicated by August 26, 2026."
       },
       {
         "question": "Is there a registration fee?",

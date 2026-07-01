@@ -277,7 +277,7 @@ function Home() {
               We are accepting self-nominations to present a poster at the FOUND
               Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
               <span className="font-semibold text-primary">
-                Tuesday, August 25, 2026, 23:59 AoE
+                Wednesday, August 19, 2026, 23:59 AoE
               </span>
               . Please check the topics of interest below. The Google Form for
               nominations will be announced soon.
