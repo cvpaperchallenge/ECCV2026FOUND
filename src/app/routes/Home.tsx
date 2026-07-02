@@ -188,12 +188,18 @@ function Home() {
             {/* CTA Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
               <Button
-                variant="outline"
+                asChild
                 size="lg"
-                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl opacity-50 cursor-not-allowed w-full"
-                disabled
+                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl w-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
               >
-                Submit Nomination (Coming Soon)
+                <a
+                  href={workshopData.callForPosterNominations.submission.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Submit Nomination
+                  <ExternalLink className="ml-1 h-4 w-4" />
+                </a>
               </Button>
               <Button
                 variant="outline"
@@ -292,8 +298,9 @@ function Home() {
               <span className="font-semibold text-primary">
                 Wednesday, August 19, 2026, 23:59 AoE
               </span>
-              . Please check the topics of interest below. The Google Form for
-              nominations will be announced soon.
+              . Please check the topics of interest below and submit your
+              nomination through the Google Form linked in the Call for Poster
+              Nominations section.
             </p>
           </div>
 
@@ -463,11 +470,18 @@ function Home() {
               {workshopData.callForPosterNominations.submission.description}
             </p>
             <Button
+              asChild
               size="lg"
-              className="text-base px-8 py-6 rounded-xl opacity-50 cursor-not-allowed"
-              disabled
+              className="text-base px-8 py-6 rounded-xl"
             >
-              Submit Nomination (Coming Soon)
+              <a
+                href={workshopData.callForPosterNominations.submission.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Submit Nomination
+                <ExternalLink className="ml-1 h-4 w-4" />
+              </a>
             </Button>
           </div>
         </section>
