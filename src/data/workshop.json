@@ -42,7 +42,7 @@
       {
         "title": "Call for Poster Nominations opened",
         "date": "July 1, 2026",
-        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. The nomination deadline is August 19, 2026, 23:59 AoE. Please check the Call for Poster Nominations section for details."
+        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. Please submit your nomination through the Google Form linked in the Call for Poster Nominations section by August 19, 2026, 23:59 AoE. Multiple submissions are welcome — one form per nominated work."
       }
     ]
   },
@@ -202,7 +202,7 @@
     },
     "nominationFormat": {
       "nominationGuidelines": [
-        "Nominations are submitted via a Google Form (link to be announced)",
+        "Nominations are submitted via the Google Form linked below",
         "Provide a presentation title, a short abstract (~200 words), and presenter name and affiliation",
         "Optionally include a link to a related paper, preprint, project page, or code repository",
         "Anonymization is not required — nominations are reviewed openly by the organizers",
@@ -212,8 +212,8 @@
       "presentationFormat": "Selected work will be showcased at the Poster Session during the workshop. There are no proceedings and no page-limit requirements. At least one presenter is expected to attend and present the poster in person."
     },
     "submission": {
-      "description": "The Google Form for nominations will be available soon. Please check back for updates.",
-      "url": ""
+      "description": "The nomination form is now open. Please submit your nomination through the Google Form below by August 19, 2026, 23:59 AoE.",
+      "url": "https://forms.gle/RGLWnKD26vofxohN9"
     },
     "faq": [
       {
@@ -333,7 +333,7 @@
     "faq": [
       {
         "question": "How do I nominate a poster?",
-        "answer": "Please submit your nomination via the Google Form linked in the Call for Poster Nominations section. The form URL will be announced soon."
+        "answer": "Please submit your nomination via the Google Form linked in the Call for Poster Nominations section."
       },
       {
         "question": "When will invitations be announced?",
