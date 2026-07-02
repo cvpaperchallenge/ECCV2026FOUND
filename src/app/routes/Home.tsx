@@ -189,9 +189,8 @@ function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
               <Button
                 asChild
-                variant="outline"
                 size="lg"
-                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl w-full"
+                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl w-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
               >
                 <a
                   href={workshopData.callForPosterNominations.submission.url}
