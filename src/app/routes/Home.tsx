@@ -110,7 +110,7 @@ function Home() {
 
       <main className="container mx-auto px-6 py-12 space-y-24 xl:max-w-6xl">
         {/* Hero Section */}
-        <section className="relative overflow-hidden rounded-3xl border px-6 py-14 md:px-8 md:py-24 lg:py-32 text-center shadow-2xl">
+        <section className="relative overflow-hidden rounded-3xl border px-6 py-14 md:px-8 md:py-16 lg:py-20 text-center shadow-2xl">
           {/* Background Effects */}
           <div className="pointer-events-none absolute inset-0">
             <img
@@ -122,10 +122,10 @@ function Home() {
             <div className="absolute inset-0 gradient-mesh opacity-50" />
           </div>
 
-          <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-6 md:gap-10 lg:gap-12 fade-in-up">
+          <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-6 md:gap-8 lg:gap-8 fade-in-up">
             {/* Conference Badge */}
-            <div className="flex flex-col items-center gap-2 md:gap-4">
-              <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                 Held as part of
               </span>
               <div className="flex flex-wrap items-center justify-center rounded-xl md:rounded-2xl bg-white px-5 py-2.5 md:px-8 md:py-4 shadow-lg">
@@ -138,7 +138,7 @@ function Home() {
             </div>
 
             {/* Title */}
-            <div className="space-y-3 md:space-y-6 max-w-4xl">
+            <div className="space-y-3 md:space-y-4 max-w-4xl">
               <h1 className="gradient-text font-extrabold leading-tight text-3xl md:text-5xl lg:text-6xl">
                 {workshopData.home.title}
               </h1>
