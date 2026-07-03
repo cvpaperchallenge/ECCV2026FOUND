@@ -206,7 +206,8 @@
         "Provide a presentation title, a short abstract (~200 words), and presenter name and affiliation",
         "Optionally include a link to a related paper, preprint, project page, or code repository",
         "Anonymization is not required — nominations are reviewed openly by the organizers",
-        "Work at any stage is welcome: published, in submission, or in progress"
+        "Work at any stage is welcome: published, in submission, or in progress",
+        "Nominators must register for and attend ECCV 2026 in person to present their poster"
       ],
       "selectionProcess": "Nominations are curated by the organizing committee based on topical fit with the workshop, potential to spark discussion, and the overall balance of the poster session. There is no scored peer review; selected presenters will be invited by email.",
       "presentationFormat": "Selected work will be showcased at the Poster Session during the workshop. There are no proceedings and no page-limit requirements. At least one presenter is expected to attend and present the poster in person."
