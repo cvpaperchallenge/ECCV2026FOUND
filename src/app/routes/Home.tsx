@@ -429,28 +429,6 @@ function Home() {
             </ul>
           </div>
 
-          {/* Selection & Presentation */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="glass rounded-2xl p-8 border shadow-md space-y-3">
-              <h3 className="text-lg font-bold">Selection Process</h3>
-              <p className="text-base leading-relaxed text-foreground/80">
-                {
-                  workshopData.callForPosterNominations.nominationFormat
-                    .selectionProcess
-                }
-              </p>
-            </div>
-            <div className="glass rounded-2xl p-8 border shadow-md space-y-3">
-              <h3 className="text-lg font-bold">Presentation Format</h3>
-              <p className="text-base leading-relaxed text-foreground/80">
-                {
-                  workshopData.callForPosterNominations.nominationFormat
-                    .presentationFormat
-                }
-              </p>
-            </div>
-          </div>
-
           {/* Submit Button */}
           <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
             <p className="text-base leading-relaxed">

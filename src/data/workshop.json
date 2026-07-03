@@ -186,16 +186,16 @@
       "intro": "Unlike a standard peer-reviewed CFP, this workshop uses a self-nomination and curatorial invitation format. Please note:",
       "points": [
         {
-          "label": "No strict double-blind review.",
-          "text": "Nominations are reviewed openly by the organizing committee for topical fit; invited presenters simply present a poster in person at the workshop."
+          "label": "Open curation, not blind review.",
+          "text": "Nominations are reviewed openly by the organizing committee for topical fit, potential to spark discussion, and overall balance of the poster session. Selected presenters are invited by email; there is no scored peer review."
         },
         {
-          "label": "No proceedings.",
-          "text": "Invitations do not come with any official publication or Springer proceedings."
+          "label": "In-person poster presentation.",
+          "text": "Selected work is presented at the workshop's poster session, with at least one presenter attending ECCV 2026 in person."
         },
         {
-          "label": "Only titles and presenters are listed on this website.",
-          "text": "Abstracts, posters, and other materials are not posted online and stay within the workshop audience."
+          "label": "No proceedings, limited online exposure.",
+          "text": "Invitations do not come with any official publication or Springer proceedings. Only presentation titles and presenter names appear on this website; abstracts and posters stay within the workshop audience."
         }
       ],
       "closing": "You are therefore welcome to nominate work that has already been accepted elsewhere, as well as work in progress that you would prefer to keep in a closed setting."
@@ -208,9 +208,7 @@
         "Anonymization is not required — nominations are reviewed openly by the organizers",
         "Work at any stage is welcome: published, in submission, or in progress",
         "Nominators must register for and attend ECCV 2026 in person to present their poster"
-      ],
-      "selectionProcess": "Nominations are curated by the organizing committee based on topical fit with the workshop, potential to spark discussion, and the overall balance of the poster session. There is no scored peer review; selected presenters will be invited by email.",
-      "presentationFormat": "Selected work will be showcased at the Poster Session during the workshop. There are no proceedings and no page-limit requirements. At least one presenter is expected to attend and present the poster in person."
+      ]
     },
     "submission": {
       "description": "The nomination form is now open. Please submit your nomination through the Google Form below by August 19, 2026, 23:59 AoE.",
