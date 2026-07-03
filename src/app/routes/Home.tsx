@@ -14,6 +14,8 @@ import {
   Handshake,
   ArrowDown,
   UserRound,
+  ChevronDown,
+  ShieldCheck,
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
@@ -213,112 +215,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Important Dates Section */}
-        <section id="dates" className="space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-bold">Important Dates</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {workshopData.home.importantDates.map((item, index) => {
-              const past = isPast(item.date);
-              const days = daysUntil(item.date);
-              return (
-                <div
-                  key={index}
-                  className={`glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
-                    past ? "opacity-50" : ""
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-3 flex-1">
-                    <div className="flex-1 flex flex-col space-y-2">
-                      <div className="flex items-start gap-2 min-h-[2.5rem]">
-                        <Calendar
-                          className={`h-4 w-4 shrink-0 mt-0.5 ${
-                            past ? "text-muted-foreground" : "text-primary"
-                          }`}
-                        />
-                        <p
-                          className={`text-sm font-semibold ${
-                            past
-                              ? "text-muted-foreground line-through"
-                              : "text-muted-foreground"
-                          }`}
-                        >
-                          {item.date}
-                        </p>
-                      </div>
-                      <h3
-                        className={`text-base font-semibold leading-tight ${
-                          past ? "text-muted-foreground" : ""
-                        }`}
-                      >
-                        {item.title}
-                      </h3>
-                      <div className="mt-auto">
-                        {!past && days !== null && (
-                          <p className="text-xs font-semibold text-primary">
-                            {days === 0
-                              ? "Today!"
-                              : days === 1
-                                ? "Tomorrow!"
-                                : `in ${days} days`}
-                          </p>
-                        )}
-                        {past && (
-                          <p className="text-xs font-semibold text-muted-foreground">
-                            Ended
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => downloadICS(item.title, item.date)}
-                      className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
-                      aria-label="Add to calendar"
-                      title="Add to calendar"
-                    >
-                      <CalendarPlus className="h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Info + Latest News Section */}
-        <div className="space-y-12">
-          {/* Info Section */}
-          <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
-            <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
-            <p className="text-base leading-relaxed">
-              We are accepting self-nominations to present a poster at the FOUND
-              Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
-              <span className="font-semibold text-primary">
-                Wednesday, August 19, 2026, 23:59 AoE
-              </span>
-              . Please check the topics of interest below and submit your
-              nomination through the Google Form linked in the Call for Poster
-              Nominations section.
-            </p>
-          </div>
-
-          {/* Latest News Section */}
-          <section id="news" className="space-y-8">
-            <div className="space-y-3">
-              <h2 className="font-bold">Latest News</h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-            </div>
-            <NewsCarousel
-              items={[...workshopData.home.latestNews].sort(
-                (a, b) =>
-                  new Date(b.date).getTime() - new Date(a.date).getTime(),
-              )}
-            />
-          </section>
-        </div>
-
         {/* Overview Section */}
         <section id="about" className="space-y-12">
           <div className="space-y-6">
@@ -328,29 +224,6 @@ function Home() {
             </div>
             <p className="text-lg leading-relaxed text-foreground/90">
               {workshopData.home.overview.mission}
-            </p>
-          </div>
-
-          {/* Broader impact */}
-          <div className="glass rounded-2xl p-10 space-y-4 border shadow-lg">
-            <h3 className="text-2xl font-bold">Broader Impact</h3>
-            <p className="text-base leading-relaxed text-foreground/80">
-              Foundation models are increasingly deployed in real-world
-              industrial and societal settings, including embodied and
-              multimodal systems. While these models offer strong
-              generalization, their reliability often degrades under domain
-              shift, rare corner cases, and safety-critical conditions.
-              Addressing this gap requires domain-grounded foundation data and
-              evaluation protocols that reflect operating reality. At the same
-              time, the collection and reuse of large-scale data raise concerns
-              related to privacy, bias, data ownership, and safety, particularly
-              when systems interact with the physical world. This workshop
-              encourages responsible data governance, transparent documentation
-              of data sources and intended use, and careful evaluation of bias,
-              privacy risk, and deployment safety. By fostering collaboration
-              between academia and industry, we aim to promote foundation data
-              that is not only technically robust but also socially responsible
-              and aligned with trustworthy real-world deployment.
             </p>
           </div>
 
@@ -372,6 +245,125 @@ function Home() {
                 ),
               )}
             </div>
+          </div>
+
+          {/* Broader Impact — collapsed by default to lower visual weight */}
+          <details className="group glass rounded-2xl border overflow-hidden">
+            <summary className="flex cursor-pointer list-none items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors [&::-webkit-details-marker]:hidden">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <ShieldCheck className="h-4 w-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-base font-semibold leading-tight">
+                  Broader Impact
+                </div>
+                <div className="text-xs text-muted-foreground mt-0.5 truncate">
+                  Responsible data governance, privacy, and deployment safety
+                </div>
+              </div>
+              <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
+            </summary>
+            <div className="border-t border-border/50 px-6 py-5 md:px-8 md:py-6">
+              <p className="text-sm leading-relaxed text-foreground/75">
+                Foundation models are increasingly deployed in real-world
+                industrial and societal settings, including embodied and
+                multimodal systems. While these models offer strong
+                generalization, their reliability often degrades under domain
+                shift, rare corner cases, and safety-critical conditions.
+                Addressing this gap requires domain-grounded foundation data and
+                evaluation protocols that reflect operating reality. At the same
+                time, the collection and reuse of large-scale data raise concerns
+                related to privacy, bias, data ownership, and safety, particularly
+                when systems interact with the physical world. This workshop
+                encourages responsible data governance, transparent documentation
+                of data sources and intended use, and careful evaluation of bias,
+                privacy risk, and deployment safety. By fostering collaboration
+                between academia and industry, we aim to promote foundation data
+                that is not only technically robust but also socially responsible
+                and aligned with trustworthy real-world deployment.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        {/* Invited Speakers Section */}
+        <section id="speakers" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Invited Speakers</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            {peopleData.program.invitedSpeakers.map((speaker, index) => {
+              const isTba = "tba" in speaker && speaker.tba === true;
+              return (
+                <Card
+                  key={index}
+                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
+                >
+                  <CardContent className="p-0">
+                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
+                      {isTba ? (
+                        <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
+                          <UserRound
+                            className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
+                            strokeWidth={1.5}
+                          />
+                          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest opacity-60">
+                            Coming Soon
+                          </span>
+                        </div>
+                      ) : (
+                        <img
+                          src={speaker.photo}
+                          alt={`Photo of ${speaker.name}`}
+                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  </CardContent>
+                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                    <CardTitle
+                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
+                    >
+                      {speaker.name}
+                    </CardTitle>
+                    <p className="text-xs sm:text-base text-muted-foreground">
+                      {isTba ? "Speaker to be announced" : speaker.affiliation}
+                    </p>
+                  </CardHeader>
+                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className={`w-full text-xs sm:text-sm ${
+                        isTba
+                          ? "opacity-50 cursor-not-allowed"
+                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      }`}
+                      disabled={isTba}
+                      asChild={!isTba}
+                    >
+                      {isTba ? (
+                        <span className="flex items-center justify-center gap-1 sm:gap-2">
+                          Profile (Coming Soon)
+                        </span>
+                      ) : (
+                        <a
+                          href={speaker.website}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center justify-center gap-1 sm:gap-2"
+                        >
+                          Profile{" "}
+                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </a>
+                      )}
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </section>
 
@@ -481,86 +473,111 @@ function Home() {
           </div>
         </section>
 
-        {/* Invited Speakers Section */}
-        <section id="speakers" className="space-y-8">
+        {/* Important Dates Section */}
+        <section id="dates" className="space-y-8">
           <div className="space-y-3">
-            <h2 className="font-bold">Invited Speakers</h2>
+            <h2 className="font-bold">Important Dates</h2>
             <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {peopleData.program.invitedSpeakers.map((speaker, index) => {
-              const isTba = "tba" in speaker && speaker.tba === true;
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {workshopData.home.importantDates.map((item, index) => {
+              const past = isPast(item.date);
+              const days = daysUntil(item.date);
               return (
-                <Card
+                <div
                   key={index}
-                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
+                  className={`glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
+                    past ? "opacity-50" : ""
+                  }`}
                 >
-                  <CardContent className="p-0">
-                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-                      {isTba ? (
-                        <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
-                          <UserRound
-                            className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
-                            strokeWidth={1.5}
-                          />
-                          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest opacity-60">
-                            Coming Soon
-                          </span>
-                        </div>
-                      ) : (
-                        <img
-                          src={speaker.photo}
-                          alt={`Photo of ${speaker.name}`}
-                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                          loading="lazy"
+                  <div className="flex items-start justify-between gap-3 flex-1">
+                    <div className="flex-1 flex flex-col space-y-2">
+                      <div className="flex items-start gap-2 min-h-[2.5rem]">
+                        <Calendar
+                          className={`h-4 w-4 shrink-0 mt-0.5 ${
+                            past ? "text-muted-foreground" : "text-primary"
+                          }`}
                         />
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
-                    <CardTitle
-                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
-                    >
-                      {speaker.name}
-                    </CardTitle>
-                    <p className="text-xs sm:text-base text-muted-foreground">
-                      {isTba ? "Speaker to be announced" : speaker.affiliation}
-                    </p>
-                  </CardHeader>
-                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className={`w-full text-xs sm:text-sm ${
-                        isTba
-                          ? "opacity-50 cursor-not-allowed"
-                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      }`}
-                      disabled={isTba}
-                      asChild={!isTba}
-                    >
-                      {isTba ? (
-                        <span className="flex items-center justify-center gap-1 sm:gap-2">
-                          Profile (Coming Soon)
-                        </span>
-                      ) : (
-                        <a
-                          href={speaker.website}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center justify-center gap-1 sm:gap-2"
+                        <p
+                          className={`text-sm font-semibold ${
+                            past
+                              ? "text-muted-foreground line-through"
+                              : "text-muted-foreground"
+                          }`}
                         >
-                          Profile{" "}
-                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                        </a>
-                      )}
-                    </Button>
+                          {item.date}
+                        </p>
+                      </div>
+                      <h3
+                        className={`text-base font-semibold leading-tight ${
+                          past ? "text-muted-foreground" : ""
+                        }`}
+                      >
+                        {item.title}
+                      </h3>
+                      <div className="mt-auto">
+                        {!past && days !== null && (
+                          <p className="text-xs font-semibold text-primary">
+                            {days === 0
+                              ? "Today!"
+                              : days === 1
+                                ? "Tomorrow!"
+                                : `in ${days} days`}
+                          </p>
+                        )}
+                        {past && (
+                          <p className="text-xs font-semibold text-muted-foreground">
+                            Ended
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => downloadICS(item.title, item.date)}
+                      className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+                      aria-label="Add to calendar"
+                      title="Add to calendar"
+                    >
+                      <CalendarPlus className="h-4 w-4" />
+                    </button>
                   </div>
-                </Card>
+                </div>
               );
             })}
           </div>
         </section>
+
+        {/* Info + Latest News Section */}
+        <div className="space-y-12">
+          {/* Info Section */}
+          <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
+            <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
+            <p className="text-base leading-relaxed">
+              We are accepting self-nominations to present a poster at the FOUND
+              Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
+              <span className="font-semibold text-primary">
+                Wednesday, August 19, 2026, 23:59 AoE
+              </span>
+              . Please check the topics of interest below and submit your
+              nomination through the Google Form linked in the Call for Poster
+              Nominations section.
+            </p>
+          </div>
+
+          {/* Latest News Section */}
+          <section id="news" className="space-y-8">
+            <div className="space-y-3">
+              <h2 className="font-bold">Latest News</h2>
+              <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+            </div>
+            <NewsCarousel
+              items={[...workshopData.home.latestNews].sort(
+                (a, b) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime(),
+              )}
+            />
+          </section>
+        </div>
 
         {/* Organizers */}
         <section id="organizers" className="space-y-8">
