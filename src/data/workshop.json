@@ -10,7 +10,7 @@
       "location": "Malmö, Sweden"
     },
     "overview": {
-      "mission": "Foundation models have pushed computer vision forward, but their reliability often drops in real-world, domain-specific deployments due to long-tail distributions, domain shift, and operational constraints (privacy, safety, cost). Closing this \"last-mile\" gap requires not only better models, but domain-tailored datasets that capture rare yet critical corner cases and realistic variability. Building on the first FOUND workshop, we refer to this missing piece as Foundation Data: fine-grained, domain-grounded data designed to bridge academic progress and practical impact.",
+      "mission": "Foundation models have pushed computer vision forward, but their reliability often drops in real-world, domain-specific deployments due to long-tail distributions, domain shift, and operational constraints (privacy, safety, cost). Closing this \"last-mile\" gap requires not only better models, but domain-tailored datasets that capture rare yet critical corner cases and realistic variability. Building on the first FOUND workshop, we refer to this missing piece as Foundation Data: fine-grained, domain-grounded data designed to bridge academic progress and practical impact. FOUND is organized around two coupled pillars — Foundation Data creation and practical tech transfer — with a key focus on Physical AI and World Models.",
       "keyTopics": [
         "Foundation Data creation: collection from non-Internet domains, curation and labeling at scale, self-/semi-/weak supervision, and synthetic/simulation data",
         "Practical tech transfer: adaptation, robustness to OOD/long-tail conditions, and deployment/evaluation protocols aligned with operating reality",

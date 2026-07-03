@@ -357,11 +357,6 @@ function Home() {
           {/* Topics of Interest */}
           <div className="space-y-6">
             <h3 className="text-2xl font-bold">Topics of Interest</h3>
-            <p className="text-base text-muted-foreground">
-              The workshop covers two coupled pillars: (1) Foundation Data
-              creation and (2) practical tech transfer, with a key focus on
-              Physical AI and World Models:
-            </p>
             <div className="grid gap-4 md:grid-cols-2">
               {workshopData.callForPosterNominations.topics.core.map(
                 (topic, index) => (
