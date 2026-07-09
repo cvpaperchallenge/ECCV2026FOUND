@@ -8,9 +8,6 @@ import {
   Megaphone,
   LayoutPanelTop,
   Eye,
-  Users,
-  TrendingUp,
-  Lightbulb,
   Handshake,
   ArrowDown,
   UserRound,
@@ -655,7 +652,7 @@ function Home() {
                 return (
                   <div
                     key={index}
-                    className="glass rounded-2xl p-6 md:p-7 border shadow-md card-hover space-y-3"
+                    className="glass rounded-2xl p-7 md:p-8 border shadow-md card-hover space-y-3"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
@@ -666,41 +663,6 @@ function Home() {
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {benefit.description}
                     </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Why Sponsor */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold">
-              {workshopData.sponsorship.whyTitle}
-            </h3>
-            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-              {workshopData.sponsorship.whyReasons.map((reason, index) => {
-                const Icon =
-                  reason.icon === "Users"
-                    ? Users
-                    : reason.icon === "TrendingUp"
-                      ? TrendingUp
-                      : Lightbulb;
-                return (
-                  <div
-                    key={index}
-                    className="flex items-start gap-4 rounded-2xl p-5 border border-border/50 bg-muted/10 card-hover"
-                  >
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <div className="space-y-1.5">
-                      <h4 className="text-base font-semibold leading-tight">
-                        {reason.title}
-                      </h4>
-                      <p className="text-sm leading-relaxed text-muted-foreground">
-                        {reason.description}
-                      </p>
-                    </div>
                   </div>
                 );
               })}

@@ -244,35 +244,17 @@
       {
         "icon": "Megaphone",
         "title": "Talk Slot at the Social Event",
-        "description": "A few minutes on stage to introduce your organization, research interests, or hiring directly to the workshop audience."
+        "description": "A few minutes on stage to introduce your organization, research interests, and hiring opportunities — reaching researchers shaping applied computer vision."
       },
       {
         "icon": "LayoutPanelTop",
         "title": "Dedicated Space at the Poster Session",
-        "description": "A reserved board and floor space for sponsors during the Poster Session. Distributing novelties and informational materials is welcome; a dedicated table can be arranged in advance by coordinating with the organizers."
+        "description": "Reserved board and floor space during the Poster Session — a direct channel to meet leading researchers, faculty, and graduate students working at the frontier of foundation data and tech transfer. Distributing novelties is welcome, and a dedicated table can be arranged in advance."
       },
       {
         "icon": "Eye",
         "title": "Visibility on Website & Program",
-        "description": "Your logo featured on the FOUND workshop website and within the official program materials shared with all attendees."
-      }
-    ],
-    "whyTitle": "Why Sponsor?",
-    "whyReasons": [
-      {
-        "icon": "Users",
-        "title": "Connect with Top Talent",
-        "description": "Meet leading researchers, faculty, and graduate students working at the frontier of foundation data and industrial tech transfer."
-      },
-      {
-        "icon": "TrendingUp",
-        "title": "Boost Brand Visibility",
-        "description": "Position your organization in front of an engaged academic and industrial audience attending one of ECCV 2026's flagship workshops."
-      },
-      {
-        "icon": "Lightbulb",
-        "title": "Showcase Your Vision",
-        "description": "Promote your products, research agenda, and career opportunities to a community shaping the next generation of applied computer vision."
+        "description": "Your logo featured on the FOUND workshop website and official program materials shared with all attendees — positioning your organization in front of an engaged academic and industrial audience at ECCV 2026."
       }
     ],
     "cta": {
