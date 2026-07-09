@@ -375,8 +375,8 @@ function Home() {
             {workshopData.callForPosterNominations.intro}
           </p>
 
-          {/* Format Notice */}
-          <div className="glass-strong rounded-2xl p-8 shadow-lg space-y-4">
+          {/* Format Notice — subtle callout with left border */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
             <div className="flex items-center gap-3">
               <Info
                 className="h-5 w-5 shrink-0 text-primary"
@@ -409,8 +409,8 @@ function Home() {
             </p>
           </div>
 
-          {/* Nomination Guidelines */}
-          <div className="glass rounded-2xl p-8 md:p-10 border shadow-lg space-y-6">
+          {/* Nomination Guidelines — flat content */}
+          <div className="space-y-5">
             <h3 className="text-xl font-bold">Nomination Guidelines</h3>
             <ul className="space-y-3">
               {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
@@ -424,6 +424,83 @@ function Home() {
                 ),
               )}
             </ul>
+          </div>
+
+          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
+          <div id="dates" className="space-y-5">
+            <div className="flex items-center gap-3">
+              <Calendar
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-xl font-bold">Important Dates</h3>
+            </div>
+            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+              {workshopData.home.importantDates.map((item, index) => {
+                const past = isPast(item.date);
+                const days = daysUntil(item.date);
+                return (
+                  <div
+                    key={index}
+                    className={`snap-start shrink-0 basis-[85%] sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-12px)] glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
+                      past ? "opacity-50" : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3 flex-1">
+                      <div className="flex-1 flex flex-col space-y-2">
+                        <div className="flex items-start gap-2 min-h-[2.5rem]">
+                          <Calendar
+                            className={`h-4 w-4 shrink-0 mt-0.5 ${
+                              past ? "text-muted-foreground" : "text-primary"
+                            }`}
+                          />
+                          <p
+                            className={`text-sm font-semibold ${
+                              past
+                                ? "text-muted-foreground line-through"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {item.date}
+                          </p>
+                        </div>
+                        <h4
+                          className={`text-base font-semibold leading-tight ${
+                            past ? "text-muted-foreground" : ""
+                          }`}
+                        >
+                          {item.title}
+                        </h4>
+                        <div className="mt-auto">
+                          {!past && days !== null && (
+                            <p className="text-xs font-semibold text-primary">
+                              {days === 0
+                                ? "Today!"
+                                : days === 1
+                                  ? "Tomorrow!"
+                                  : `in ${days} days`}
+                            </p>
+                          )}
+                          {past && (
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              Ended
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => downloadICS(item.title, item.date)}
+                        className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label="Add to calendar"
+                        title="Add to calendar"
+                      >
+                        <CalendarPlus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* Submit Button */}
@@ -445,80 +522,6 @@ function Home() {
                 <ExternalLink className="ml-1 h-4 w-4" />
               </a>
             </Button>
-          </div>
-        </section>
-
-        {/* Important Dates Section */}
-        <section id="dates" className="space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-bold">Important Dates</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {workshopData.home.importantDates.map((item, index) => {
-              const past = isPast(item.date);
-              const days = daysUntil(item.date);
-              return (
-                <div
-                  key={index}
-                  className={`glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
-                    past ? "opacity-50" : ""
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-3 flex-1">
-                    <div className="flex-1 flex flex-col space-y-2">
-                      <div className="flex items-start gap-2 min-h-[2.5rem]">
-                        <Calendar
-                          className={`h-4 w-4 shrink-0 mt-0.5 ${
-                            past ? "text-muted-foreground" : "text-primary"
-                          }`}
-                        />
-                        <p
-                          className={`text-sm font-semibold ${
-                            past
-                              ? "text-muted-foreground line-through"
-                              : "text-muted-foreground"
-                          }`}
-                        >
-                          {item.date}
-                        </p>
-                      </div>
-                      <h3
-                        className={`text-base font-semibold leading-tight ${
-                          past ? "text-muted-foreground" : ""
-                        }`}
-                      >
-                        {item.title}
-                      </h3>
-                      <div className="mt-auto">
-                        {!past && days !== null && (
-                          <p className="text-xs font-semibold text-primary">
-                            {days === 0
-                              ? "Today!"
-                              : days === 1
-                                ? "Tomorrow!"
-                                : `in ${days} days`}
-                          </p>
-                        )}
-                        {past && (
-                          <p className="text-xs font-semibold text-muted-foreground">
-                            Ended
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => downloadICS(item.title, item.date)}
-                      className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
-                      aria-label="Add to calendar"
-                      title="Add to calendar"
-                    >
-                      <CalendarPlus className="h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </section>
 
