@@ -272,15 +272,16 @@ function Home() {
                 shift, rare corner cases, and safety-critical conditions.
                 Addressing this gap requires domain-grounded foundation data and
                 evaluation protocols that reflect operating reality. At the same
-                time, the collection and reuse of large-scale data raise concerns
-                related to privacy, bias, data ownership, and safety, particularly
-                when systems interact with the physical world. This workshop
-                encourages responsible data governance, transparent documentation
-                of data sources and intended use, and careful evaluation of bias,
-                privacy risk, and deployment safety. By fostering collaboration
-                between academia and industry, we aim to promote foundation data
-                that is not only technically robust but also socially responsible
-                and aligned with trustworthy real-world deployment.
+                time, the collection and reuse of large-scale data raise
+                concerns related to privacy, bias, data ownership, and safety,
+                particularly when systems interact with the physical world. This
+                workshop encourages responsible data governance, transparent
+                documentation of data sources and intended use, and careful
+                evaluation of bias, privacy risk, and deployment safety. By
+                fostering collaboration between academia and industry, we aim to
+                promote foundation data that is not only technically robust but
+                also socially responsible and aligned with trustworthy
+                real-world deployment.
               </p>
             </div>
           </details>
