@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
-import { NewsCarousel } from "../../components/news-carousel";
 
 import {
   Card,
@@ -523,36 +522,19 @@ function Home() {
           </div>
         </section>
 
-        {/* Info + Latest News Section */}
-        <div className="space-y-12">
-          {/* Info Section */}
-          <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
-            <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
-            <p className="text-base leading-relaxed">
-              We are accepting self-nominations to present a poster at the FOUND
-              Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
-              <span className="font-semibold text-primary">
-                Wednesday, August 19, 2026, 23:59 AoE
-              </span>
-              . Please check the topics of interest below and submit your
-              nomination through the Google Form linked in the Call for Poster
-              Nominations section.
-            </p>
-          </div>
-
-          {/* Latest News Section */}
-          <section id="news" className="space-y-8">
-            <div className="space-y-3">
-              <h2 className="font-bold">Latest News</h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-            </div>
-            <NewsCarousel
-              items={[...workshopData.home.latestNews].sort(
-                (a, b) =>
-                  new Date(b.date).getTime() - new Date(a.date).getTime(),
-              )}
-            />
-          </section>
+        {/* Info Section */}
+        <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
+          <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
+          <p className="text-base leading-relaxed">
+            We are accepting self-nominations to present a poster at the FOUND
+            Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
+            <span className="font-semibold text-primary">
+              Wednesday, August 19, 2026, 23:59 AoE
+            </span>
+            . Please check the topics of interest below and submit your
+            nomination through the Google Form linked in the Call for Poster
+            Nominations section.
+          </p>
         </div>
 
         {/* Organizers */}
