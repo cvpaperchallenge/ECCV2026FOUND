@@ -11,6 +11,8 @@ import {
   Handshake,
   ArrowDown,
   UserRound,
+  ChevronDown,
+  ShieldCheck,
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
@@ -105,7 +107,7 @@ function Home() {
 
       <main className="container mx-auto px-6 py-12 space-y-24 xl:max-w-6xl">
         {/* Hero Section */}
-        <section className="relative overflow-hidden rounded-3xl border px-6 py-14 md:px-8 md:py-24 lg:py-32 text-center shadow-2xl">
+        <section className="relative overflow-hidden rounded-3xl border px-6 py-14 md:px-8 md:py-16 lg:py-20 text-center shadow-2xl">
           {/* Background Effects */}
           <div className="pointer-events-none absolute inset-0">
             <img
@@ -117,10 +119,10 @@ function Home() {
             <div className="absolute inset-0 gradient-mesh opacity-50" />
           </div>
 
-          <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-6 md:gap-10 lg:gap-12 fade-in-up">
+          <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-6 md:gap-8 lg:gap-8 fade-in-up">
             {/* Conference Badge */}
-            <div className="flex flex-col items-center gap-2 md:gap-4">
-              <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                 Held as part of
               </span>
               <div className="flex flex-wrap items-center justify-center rounded-xl md:rounded-2xl bg-white px-5 py-2.5 md:px-8 md:py-4 shadow-lg">
@@ -133,7 +135,7 @@ function Home() {
             </div>
 
             {/* Title */}
-            <div className="space-y-3 md:space-y-6 max-w-4xl">
+            <div className="space-y-3 md:space-y-4 max-w-4xl">
               <h1 className="gradient-text font-extrabold leading-tight text-3xl md:text-5xl lg:text-6xl">
                 {workshopData.home.title}
               </h1>
@@ -207,6 +209,243 @@ function Home() {
                 View Program (Coming Soon)
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* Overview Section */}
+        <section id="about" className="space-y-12">
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <h2 className="font-bold">About the Workshop</h2>
+              <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+            </div>
+            <p className="text-lg leading-relaxed text-foreground/90">
+              {workshopData.home.overview.mission}
+            </p>
+          </div>
+
+          {/* Topics of Interest */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold">Topics of Interest</h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              {workshopData.callForPosterNominations.topics.core.map(
+                (topic, index) => (
+                  <div
+                    key={index}
+                    className="glass flex items-start gap-4 rounded-xl p-6 border card-hover"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">
+                      {index + 1}
+                    </div>
+                    <p className="text-base leading-relaxed pt-1">{topic}</p>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+
+          {/* Broader Impact — collapsed by default to lower visual weight */}
+          <details className="group glass rounded-2xl border overflow-hidden">
+            <summary className="flex cursor-pointer list-none items-center gap-4 px-6 py-4 hover:bg-primary/5 transition-colors [&::-webkit-details-marker]:hidden">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <ShieldCheck className="h-4 w-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-base font-semibold leading-tight">
+                  Broader Impact
+                </div>
+                <div className="text-xs text-muted-foreground mt-0.5 truncate">
+                  Responsible data governance, privacy, and deployment safety
+                </div>
+              </div>
+              <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
+            </summary>
+            <div className="border-t border-border/50 px-6 py-5 md:px-8 md:py-6">
+              <p className="text-sm leading-relaxed text-foreground/75">
+                Foundation models are increasingly deployed in real-world
+                industrial and societal settings, including embodied and
+                multimodal systems. While these models offer strong
+                generalization, their reliability often degrades under domain
+                shift, rare corner cases, and safety-critical conditions.
+                Addressing this gap requires domain-grounded foundation data and
+                evaluation protocols that reflect operating reality. At the same
+                time, the collection and reuse of large-scale data raise
+                concerns related to privacy, bias, data ownership, and safety,
+                particularly when systems interact with the physical world. This
+                workshop encourages responsible data governance, transparent
+                documentation of data sources and intended use, and careful
+                evaluation of bias, privacy risk, and deployment safety. By
+                fostering collaboration between academia and industry, we aim to
+                promote foundation data that is not only technically robust but
+                also socially responsible and aligned with trustworthy
+                real-world deployment.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        {/* Invited Speakers Section */}
+        <section id="speakers" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Invited Speakers</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            {peopleData.program.invitedSpeakers.map((speaker, index) => {
+              const isTba = "tba" in speaker && speaker.tba === true;
+              return (
+                <Card
+                  key={index}
+                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
+                >
+                  <CardContent className="p-0">
+                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
+                      {isTba ? (
+                        <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
+                          <UserRound
+                            className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
+                            strokeWidth={1.5}
+                          />
+                          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest opacity-60">
+                            Coming Soon
+                          </span>
+                        </div>
+                      ) : (
+                        <img
+                          src={speaker.photo}
+                          alt={`Photo of ${speaker.name}`}
+                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  </CardContent>
+                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                    <CardTitle
+                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
+                    >
+                      {speaker.name}
+                    </CardTitle>
+                    <p className="text-xs sm:text-base text-muted-foreground">
+                      {isTba ? "Speaker to be announced" : speaker.affiliation}
+                    </p>
+                  </CardHeader>
+                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className={`w-full text-xs sm:text-sm ${
+                        isTba
+                          ? "opacity-50 cursor-not-allowed"
+                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      }`}
+                      disabled={isTba}
+                      asChild={!isTba}
+                    >
+                      {isTba ? (
+                        <span className="flex items-center justify-center gap-1 sm:gap-2">
+                          Profile (Coming Soon)
+                        </span>
+                      ) : (
+                        <a
+                          href={speaker.website}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center justify-center gap-1 sm:gap-2"
+                        >
+                          Profile{" "}
+                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </a>
+                      )}
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Call for Poster Nominations Section */}
+        <section id="cfp" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Call for Poster Nominations</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {workshopData.callForPosterNominations.intro}
+          </p>
+
+          {/* Format Notice */}
+          <div className="glass-strong rounded-2xl p-8 shadow-lg space-y-4">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">
+                {workshopData.callForPosterNominations.formatNotice.title}
+              </h3>
+            </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.intro}
+            </p>
+            <ul className="space-y-2.5">
+              {workshopData.callForPosterNominations.formatNotice.points.map(
+                (point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <p className="text-base leading-relaxed">
+                      <span className="font-semibold text-foreground">
+                        {point.label}
+                      </span>{" "}
+                      <span className="text-foreground/80">{point.text}</span>
+                    </p>
+                  </li>
+                ),
+              )}
+            </ul>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.closing}
+            </p>
+          </div>
+
+          {/* Nomination Guidelines */}
+          <div className="glass rounded-2xl p-8 md:p-10 border shadow-lg space-y-6">
+            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
+            <ul className="space-y-3">
+              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
+                (guideline, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
+                      {index + 1}
+                    </div>
+                    <p className="text-base leading-relaxed">{guideline}</p>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
+
+          {/* Submit Button */}
+          <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
+            <p className="text-base leading-relaxed">
+              {workshopData.callForPosterNominations.submission.description}
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="text-base px-8 py-6 rounded-xl"
+            >
+              <a
+                href={workshopData.callForPosterNominations.submission.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Submit Nomination
+                <ExternalLink className="ml-1 h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </section>
 
@@ -315,254 +554,6 @@ function Home() {
             />
           </section>
         </div>
-
-        {/* Overview Section */}
-        <section id="about" className="space-y-12">
-          <div className="space-y-6">
-            <div className="space-y-3">
-              <h2 className="font-bold">About the Workshop</h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-            </div>
-            <p className="text-lg leading-relaxed text-foreground/90">
-              {workshopData.home.overview.mission}
-            </p>
-          </div>
-
-          {/* Broader impact */}
-          <div className="glass rounded-2xl p-10 space-y-4 border shadow-lg">
-            <h3 className="text-2xl font-bold">Broader Impact</h3>
-            <p className="text-base leading-relaxed text-foreground/80">
-              Foundation models are increasingly deployed in real-world
-              industrial and societal settings, including embodied and
-              multimodal systems. While these models offer strong
-              generalization, their reliability often degrades under domain
-              shift, rare corner cases, and safety-critical conditions.
-              Addressing this gap requires domain-grounded foundation data and
-              evaluation protocols that reflect operating reality. At the same
-              time, the collection and reuse of large-scale data raise concerns
-              related to privacy, bias, data ownership, and safety, particularly
-              when systems interact with the physical world. This workshop
-              encourages responsible data governance, transparent documentation
-              of data sources and intended use, and careful evaluation of bias,
-              privacy risk, and deployment safety. By fostering collaboration
-              between academia and industry, we aim to promote foundation data
-              that is not only technically robust but also socially responsible
-              and aligned with trustworthy real-world deployment.
-            </p>
-          </div>
-
-          {/* Topics of Interest */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold">Topics of Interest</h3>
-            <p className="text-base text-muted-foreground">
-              The workshop covers two coupled pillars: (1) Foundation Data
-              creation and (2) practical tech transfer, with a key focus on
-              Physical AI and World Models:
-            </p>
-            <div className="grid gap-4 md:grid-cols-2">
-              {workshopData.callForPosterNominations.topics.core.map(
-                (topic, index) => (
-                  <div
-                    key={index}
-                    className="glass flex items-start gap-4 rounded-xl p-6 border card-hover"
-                  >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">
-                      {index + 1}
-                    </div>
-                    <p className="text-base leading-relaxed pt-1">{topic}</p>
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Call for Poster Nominations Section */}
-        <section id="cfp" className="space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-bold">Call for Poster Nominations</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-          </div>
-
-          <p className="text-lg leading-relaxed text-foreground/90">
-            {workshopData.callForPosterNominations.intro}
-          </p>
-
-          {/* Format Notice */}
-          <div className="glass-strong rounded-2xl p-8 shadow-lg space-y-4">
-            <div className="flex items-center gap-3">
-              <Info
-                className="h-5 w-5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
-              <h3 className="text-lg font-bold">
-                {workshopData.callForPosterNominations.formatNotice.title}
-              </h3>
-            </div>
-            <p className="text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.formatNotice.intro}
-            </p>
-            <ul className="space-y-2.5">
-              {workshopData.callForPosterNominations.formatNotice.points.map(
-                (point, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                    <p className="text-base leading-relaxed">
-                      <span className="font-semibold text-foreground">
-                        {point.label}
-                      </span>{" "}
-                      <span className="text-foreground/80">{point.text}</span>
-                    </p>
-                  </li>
-                ),
-              )}
-            </ul>
-            <p className="text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.formatNotice.closing}
-            </p>
-          </div>
-
-          {/* Nomination Guidelines */}
-          <div className="glass rounded-2xl p-8 md:p-10 border shadow-lg space-y-6">
-            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
-            <ul className="space-y-3">
-              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
-                (guideline, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
-                      {index + 1}
-                    </div>
-                    <p className="text-base leading-relaxed">{guideline}</p>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          {/* Selection & Presentation */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="glass rounded-2xl p-8 border shadow-md space-y-3">
-              <h3 className="text-lg font-bold">Selection Process</h3>
-              <p className="text-base leading-relaxed text-foreground/80">
-                {
-                  workshopData.callForPosterNominations.nominationFormat
-                    .selectionProcess
-                }
-              </p>
-            </div>
-            <div className="glass rounded-2xl p-8 border shadow-md space-y-3">
-              <h3 className="text-lg font-bold">Presentation Format</h3>
-              <p className="text-base leading-relaxed text-foreground/80">
-                {
-                  workshopData.callForPosterNominations.nominationFormat
-                    .presentationFormat
-                }
-              </p>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
-            <p className="text-base leading-relaxed">
-              {workshopData.callForPosterNominations.submission.description}
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="text-base px-8 py-6 rounded-xl"
-            >
-              <a
-                href={workshopData.callForPosterNominations.submission.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Submit Nomination
-                <ExternalLink className="ml-1 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-        </section>
-
-        {/* Invited Speakers Section */}
-        <section id="speakers" className="space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-bold">Invited Speakers</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {peopleData.program.invitedSpeakers.map((speaker, index) => {
-              const isTba = "tba" in speaker && speaker.tba === true;
-              return (
-                <Card
-                  key={index}
-                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
-                >
-                  <CardContent className="p-0">
-                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-                      {isTba ? (
-                        <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
-                          <UserRound
-                            className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
-                            strokeWidth={1.5}
-                          />
-                          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest opacity-60">
-                            Coming Soon
-                          </span>
-                        </div>
-                      ) : (
-                        <img
-                          src={speaker.photo}
-                          alt={`Photo of ${speaker.name}`}
-                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                          loading="lazy"
-                        />
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
-                    <CardTitle
-                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
-                    >
-                      {speaker.name}
-                    </CardTitle>
-                    <p className="text-xs sm:text-base text-muted-foreground">
-                      {isTba ? "Speaker to be announced" : speaker.affiliation}
-                    </p>
-                  </CardHeader>
-                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className={`w-full text-xs sm:text-sm ${
-                        isTba
-                          ? "opacity-50 cursor-not-allowed"
-                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      }`}
-                      disabled={isTba}
-                      asChild={!isTba}
-                    >
-                      {isTba ? (
-                        <span className="flex items-center justify-center gap-1 sm:gap-2">
-                          Profile (Coming Soon)
-                        </span>
-                      ) : (
-                        <a
-                          href={speaker.website}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center justify-center gap-1 sm:gap-2"
-                        >
-                          Profile{" "}
-                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                        </a>
-                      )}
-                    </Button>
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
-        </section>
 
         {/* Organizers */}
         <section id="organizers" className="space-y-8">

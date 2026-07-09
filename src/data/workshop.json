@@ -10,7 +10,7 @@
       "location": "Malmö, Sweden"
     },
     "overview": {
-      "mission": "Foundation models have pushed computer vision forward, but their reliability often drops in real-world, domain-specific deployments due to long-tail distributions, domain shift, and operational constraints (privacy, safety, cost). Closing this \"last-mile\" gap requires not only better models, but domain-tailored datasets that capture rare yet critical corner cases and realistic variability. Building on the first FOUND workshop, we refer to this missing piece as Foundation Data: fine-grained, domain-grounded data designed to bridge academic progress and practical impact.",
+      "mission": "Foundation models have pushed computer vision forward, but their reliability often drops in real-world, domain-specific deployments due to long-tail distributions, domain shift, and operational constraints (privacy, safety, cost). Closing this \"last-mile\" gap requires not only better models, but domain-tailored datasets that capture rare yet critical corner cases and realistic variability. Building on the first FOUND workshop, we refer to this missing piece as Foundation Data: fine-grained, domain-grounded data designed to bridge academic progress and practical impact. FOUND is organized around two coupled pillars — Foundation Data creation and practical tech transfer — with a key focus on Physical AI and World Models.",
       "keyTopics": [
         "Foundation Data creation: collection from non-Internet domains, curation and labeling at scale, self-/semi-/weak supervision, and synthetic/simulation data",
         "Practical tech transfer: adaptation, robustness to OOD/long-tail conditions, and deployment/evaluation protocols aligned with operating reality",
@@ -186,16 +186,16 @@
       "intro": "Unlike a standard peer-reviewed CFP, this workshop uses a self-nomination and curatorial invitation format. Please note:",
       "points": [
         {
-          "label": "No strict double-blind review.",
-          "text": "Nominations are reviewed openly by the organizing committee for topical fit; invited presenters simply present a poster in person at the workshop."
+          "label": "Open curation, not blind review.",
+          "text": "Nominations are reviewed openly by the organizing committee for topical fit, potential to spark discussion, and overall balance of the poster session. Selected presenters are invited by email; there is no scored peer review."
         },
         {
-          "label": "No proceedings.",
-          "text": "Invitations do not come with any official publication or Springer proceedings."
+          "label": "In-person poster presentation.",
+          "text": "Selected work is presented at the workshop's poster session, with at least one presenter attending ECCV 2026 in person."
         },
         {
-          "label": "Only titles and presenters are listed on this website.",
-          "text": "Abstracts, posters, and other materials are not posted online and stay within the workshop audience."
+          "label": "No proceedings, limited online exposure.",
+          "text": "Invitations do not come with any official publication or Springer proceedings. Only presentation titles and presenter names appear on this website; abstracts and posters stay within the workshop audience."
         }
       ],
       "closing": "You are therefore welcome to nominate work that has already been accepted elsewhere, as well as work in progress that you would prefer to keep in a closed setting."
@@ -206,10 +206,9 @@
         "Provide a presentation title, a short abstract (~200 words), and presenter name and affiliation",
         "Optionally include a link to a related paper, preprint, project page, or code repository",
         "Anonymization is not required — nominations are reviewed openly by the organizers",
-        "Work at any stage is welcome: published, in submission, or in progress"
-      ],
-      "selectionProcess": "Nominations are curated by the organizing committee based on topical fit with the workshop, potential to spark discussion, and the overall balance of the poster session. There is no scored peer review; selected presenters will be invited by email.",
-      "presentationFormat": "Selected work will be showcased at the Poster Session during the workshop. There are no proceedings and no page-limit requirements. At least one presenter is expected to attend and present the poster in person."
+        "Work at any stage is welcome: published, in submission, or in progress",
+        "At least one presenter must register for and attend ECCV 2026 in person to present the poster"
+      ]
     },
     "submission": {
       "description": "The nomination form is now open. Please submit your nomination through the Google Form below by August 19, 2026, 23:59 AoE.",
