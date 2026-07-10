@@ -525,21 +525,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Info Section */}
-        <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
-          <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
-          <p className="text-base leading-relaxed">
-            We are accepting self-nominations to present a poster at the FOUND
-            Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
-            <span className="font-semibold text-primary">
-              Wednesday, August 19, 2026, 23:59 AoE
-            </span>
-            . Please check the topics of interest below and submit your
-            nomination through the Google Form linked in the Call for Poster
-            Nominations section.
-          </p>
-        </div>
-
         {/* Organizers */}
         <section id="organizers" className="space-y-8">
           <div className="space-y-3">
