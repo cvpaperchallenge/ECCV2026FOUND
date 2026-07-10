@@ -214,7 +214,7 @@ function Home() {
         <section id="about" className="space-y-12">
           <div className="space-y-6">
             <div className="space-y-3">
-              <h2 className="font-bold">About the Workshop</h2>
+              <h2 className="font-bold">Overview</h2>
               <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
             </div>
             <p className="text-lg leading-relaxed text-foreground/90">
