@@ -8,7 +8,6 @@ import {
   Megaphone,
   LayoutPanelTop,
   Eye,
-  Handshake,
   ArrowDown,
   UserRound,
   ChevronDown,
@@ -562,41 +561,30 @@ function Home() {
             <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
           </div>
 
-          {/* Intro card */}
-          <div className="relative overflow-hidden rounded-2xl p-px bg-gradient-to-br from-primary/40 via-primary/15 to-transparent">
-            <div className="rounded-2xl bg-card/80 backdrop-blur-sm p-8 md:p-10 space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Handshake className="h-5 w-5" />
-                </div>
-                <h3 className="text-2xl font-bold">
-                  {workshopData.sponsorship.subtitle}
-                </h3>
-              </div>
-              <p className="text-base leading-relaxed text-foreground/80">
-                {workshopData.sponsorship.intro}
-              </p>
-              <div className="rounded-xl border border-border/40 bg-background/60 backdrop-blur-sm px-5 py-4 flex items-start gap-3">
-                <Info
-                  className="h-4 w-4 shrink-0 text-primary mt-0.5"
-                  aria-hidden="true"
-                />
-                <p className="text-sm leading-relaxed text-foreground/80">
-                  <span className="font-semibold text-foreground">
-                    Joint sponsorship:
-                  </span>{" "}
-                  {renderWithLimitLink(workshopData.sponsorship.jointNote)}
-                </p>
-              </div>
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {workshopData.sponsorship.intro}
+          </p>
+
+          {/* Joint sponsorship — subtle callout with left border, mirrors CFP "About this format" */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-3">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">Joint sponsorship</h3>
             </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {renderWithLimitLink(workshopData.sponsorship.jointNote)}
+            </p>
           </div>
 
-          {/* Benefits */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold">
+          {/* Benefits — flat grid, no card container */}
+          <div className="space-y-5">
+            <h3 className="text-xl font-bold">
               {workshopData.sponsorship.benefitsTitle}
             </h3>
-            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3">
               {workshopData.sponsorship.benefits.map((benefit, index) => {
                 const Icon =
                   benefit.icon === "Megaphone"
@@ -605,10 +593,7 @@ function Home() {
                       ? LayoutPanelTop
                       : Eye;
                 return (
-                  <div
-                    key={index}
-                    className="glass rounded-2xl p-7 md:p-8 border shadow-md card-hover space-y-3"
-                  >
+                  <div key={index} className="space-y-3">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
@@ -624,7 +609,7 @@ function Home() {
             </div>
           </div>
 
-          {/* CTA */}
+          {/* CTA — kept as card, parallel to CFP Submit Button */}
           <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
             <h3 className="text-xl font-bold">
               {workshopData.sponsorship.cta.title}
