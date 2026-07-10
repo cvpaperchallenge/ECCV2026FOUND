@@ -428,13 +428,7 @@ function Home() {
 
           {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
           <div id="dates" className="space-y-5">
-            <div className="flex items-center gap-3">
-              <Calendar
-                className="h-5 w-5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold">Important Dates</h3>
-            </div>
+            <h3 className="text-xl font-bold">Important Dates</h3>
             <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
               {workshopData.home.importantDates.map((item, index) => {
                 const past = isPast(item.date);
