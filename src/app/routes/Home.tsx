@@ -291,14 +291,14 @@ function Home() {
           <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {peopleData.program.invitedSpeakers.map((speaker, index) => {
               const isTba = "tba" in speaker && speaker.tba === true;
-              return (
-                <Card
-                  key={index}
-                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
-                >
-                  <CardContent className="p-0">
-                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-                      {isTba ? (
+              if (isTba) {
+                return (
+                  <Card
+                    key={index}
+                    className="glass border overflow-hidden gap-0 py-0 flex flex-col opacity-70"
+                  >
+                    <CardContent className="p-0">
+                      <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
                         <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
                           <UserRound
                             className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
@@ -308,56 +308,53 @@ function Home() {
                             Coming Soon
                           </span>
                         </div>
-                      ) : (
+                      </div>
+                    </CardContent>
+                    <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                      <CardTitle className="text-sm sm:text-xl text-muted-foreground">
+                        {speaker.name}
+                      </CardTitle>
+                      <p className="text-xs sm:text-base text-muted-foreground">
+                        Speaker to be announced
+                      </p>
+                    </CardHeader>
+                  </Card>
+                );
+              }
+              return (
+                <a
+                  key={index}
+                  href={speaker.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${speaker.name} — external profile`}
+                  className="block rounded-xl focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                >
+                  <Card className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col h-full">
+                    <CardContent className="p-0">
+                      <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
                         <img
                           src={speaker.photo}
                           alt={`Photo of ${speaker.name}`}
                           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
-                    <CardTitle
-                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
-                    >
-                      {speaker.name}
-                    </CardTitle>
-                    <p className="text-xs sm:text-base text-muted-foreground">
-                      {isTba ? "Speaker to be announced" : speaker.affiliation}
-                    </p>
-                  </CardHeader>
-                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className={`w-full text-xs sm:text-sm ${
-                        isTba
-                          ? "opacity-50 cursor-not-allowed"
-                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      }`}
-                      disabled={isTba}
-                      asChild={!isTba}
-                    >
-                      {isTba ? (
-                        <span className="flex items-center justify-center gap-1 sm:gap-2">
-                          Profile (Coming Soon)
-                        </span>
-                      ) : (
-                        <a
-                          href={speaker.website}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center justify-center gap-1 sm:gap-2"
-                        >
-                          Profile{" "}
-                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                        </a>
-                      )}
-                    </Button>
-                  </div>
-                </Card>
+                      </div>
+                    </CardContent>
+                    <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                      <CardTitle className="text-sm sm:text-xl flex items-start gap-2">
+                        <span className="flex-1">{speaker.name}</span>
+                        <ExternalLink
+                          className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 mt-1 text-muted-foreground group-hover:text-primary transition-colors"
+                          aria-hidden="true"
+                        />
+                      </CardTitle>
+                      <p className="text-xs sm:text-base text-muted-foreground">
+                        {speaker.affiliation}
+                      </p>
+                    </CardHeader>
+                  </Card>
+                </a>
               );
             })}
           </div>
