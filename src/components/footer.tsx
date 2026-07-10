@@ -57,16 +57,22 @@ export function Footer() {
               Home
             </Link>
             <Link
-              to="/#cfp"
+              to="/#about"
               className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
             >
-              Poster Nominations
+              Overview
             </Link>
             <Link
               to="/#speakers"
               className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
             >
               Speakers
+            </Link>
+            <Link
+              to="/#cfp"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+            >
+              Poster Nominations
             </Link>
             <Link
               to="/#organizers"

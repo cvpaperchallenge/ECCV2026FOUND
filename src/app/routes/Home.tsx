@@ -8,7 +8,6 @@ import {
   Megaphone,
   LayoutPanelTop,
   Eye,
-  Handshake,
   ArrowDown,
   UserRound,
   ChevronDown,
@@ -16,7 +15,6 @@ import {
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
-import { NewsCarousel } from "../../components/news-carousel";
 
 import {
   Card,
@@ -216,7 +214,7 @@ function Home() {
         <section id="about" className="space-y-12">
           <div className="space-y-6">
             <div className="space-y-3">
-              <h2 className="font-bold">About the Workshop</h2>
+              <h2 className="font-bold">Overview</h2>
               <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
             </div>
             <p className="text-lg leading-relaxed text-foreground/90">
@@ -232,7 +230,7 @@ function Home() {
                 (topic, index) => (
                   <div
                     key={index}
-                    className="glass flex items-start gap-4 rounded-xl p-6 border card-hover"
+                    className="glass flex items-start gap-4 rounded-xl p-6 border"
                   >
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">
                       {index + 1}
@@ -293,14 +291,14 @@ function Home() {
           <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {peopleData.program.invitedSpeakers.map((speaker, index) => {
               const isTba = "tba" in speaker && speaker.tba === true;
-              return (
-                <Card
-                  key={index}
-                  className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col"
-                >
-                  <CardContent className="p-0">
-                    <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-                      {isTba ? (
+              if (isTba) {
+                return (
+                  <Card
+                    key={index}
+                    className="glass border overflow-hidden gap-0 py-0 flex flex-col opacity-70"
+                  >
+                    <CardContent className="p-0">
+                      <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
                         <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
                           <UserRound
                             className="h-12 w-12 sm:h-16 sm:w-16 opacity-40"
@@ -310,56 +308,53 @@ function Home() {
                             Coming Soon
                           </span>
                         </div>
-                      ) : (
+                      </div>
+                    </CardContent>
+                    <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                      <CardTitle className="text-sm sm:text-xl text-muted-foreground">
+                        {speaker.name}
+                      </CardTitle>
+                      <p className="text-xs sm:text-base text-muted-foreground">
+                        Speaker to be announced
+                      </p>
+                    </CardHeader>
+                  </Card>
+                );
+              }
+              return (
+                <a
+                  key={index}
+                  href={speaker.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${speaker.name} — external profile`}
+                  className="block rounded-xl focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                >
+                  <Card className="glass border overflow-hidden card-hover group gap-0 py-0 flex flex-col h-full">
+                    <CardContent className="p-0">
+                      <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
                         <img
                           src={speaker.photo}
                           alt={`Photo of ${speaker.name}`}
                           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
-                    <CardTitle
-                      className={`text-sm sm:text-xl ${isTba ? "text-muted-foreground" : ""}`}
-                    >
-                      {speaker.name}
-                    </CardTitle>
-                    <p className="text-xs sm:text-base text-muted-foreground">
-                      {isTba ? "Speaker to be announced" : speaker.affiliation}
-                    </p>
-                  </CardHeader>
-                  <div className="px-3 pb-3 sm:px-6 sm:pb-6 mt-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className={`w-full text-xs sm:text-sm ${
-                        isTba
-                          ? "opacity-50 cursor-not-allowed"
-                          : "group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      }`}
-                      disabled={isTba}
-                      asChild={!isTba}
-                    >
-                      {isTba ? (
-                        <span className="flex items-center justify-center gap-1 sm:gap-2">
-                          Profile (Coming Soon)
-                        </span>
-                      ) : (
-                        <a
-                          href={speaker.website}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center justify-center gap-1 sm:gap-2"
-                        >
-                          Profile{" "}
-                          <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                        </a>
-                      )}
-                    </Button>
-                  </div>
-                </Card>
+                      </div>
+                    </CardContent>
+                    <CardHeader className="space-y-1 sm:space-y-3 p-3 sm:p-6 flex-1">
+                      <CardTitle className="text-sm sm:text-xl flex items-start gap-2">
+                        <span className="flex-1">{speaker.name}</span>
+                        <ExternalLink
+                          className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 mt-1 text-muted-foreground group-hover:text-primary transition-colors"
+                          aria-hidden="true"
+                        />
+                      </CardTitle>
+                      <p className="text-xs sm:text-base text-muted-foreground">
+                        {speaker.affiliation}
+                      </p>
+                    </CardHeader>
+                  </Card>
+                </a>
               );
             })}
           </div>
@@ -376,8 +371,8 @@ function Home() {
             {workshopData.callForPosterNominations.intro}
           </p>
 
-          {/* Format Notice */}
-          <div className="glass-strong rounded-2xl p-8 shadow-lg space-y-4">
+          {/* Format Notice — subtle callout with left border */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
             <div className="flex items-center gap-3">
               <Info
                 className="h-5 w-5 shrink-0 text-primary"
@@ -410,8 +405,8 @@ function Home() {
             </p>
           </div>
 
-          {/* Nomination Guidelines */}
-          <div className="glass rounded-2xl p-8 md:p-10 border shadow-lg space-y-6">
+          {/* Nomination Guidelines — flat content */}
+          <div className="space-y-5">
             <h3 className="text-xl font-bold">Nomination Guidelines</h3>
             <ul className="space-y-3">
               {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
@@ -425,6 +420,77 @@ function Home() {
                 ),
               )}
             </ul>
+          </div>
+
+          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
+          <div id="dates" className="space-y-5">
+            <h3 className="text-xl font-bold">Important Dates</h3>
+            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+              {workshopData.home.importantDates.map((item, index) => {
+                const past = isPast(item.date);
+                const days = daysUntil(item.date);
+                return (
+                  <div
+                    key={index}
+                    className={`snap-start shrink-0 basis-[85%] sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-12px)] glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
+                      past ? "opacity-50" : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3 flex-1">
+                      <div className="flex-1 flex flex-col space-y-2">
+                        <div className="flex items-start gap-2 min-h-[2.5rem]">
+                          <Calendar
+                            className={`h-4 w-4 shrink-0 mt-0.5 ${
+                              past ? "text-muted-foreground" : "text-primary"
+                            }`}
+                          />
+                          <p
+                            className={`text-sm font-semibold ${
+                              past
+                                ? "text-muted-foreground line-through"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {item.date}
+                          </p>
+                        </div>
+                        <h4
+                          className={`text-base font-semibold leading-tight ${
+                            past ? "text-muted-foreground" : ""
+                          }`}
+                        >
+                          {item.title}
+                        </h4>
+                        <div className="mt-auto">
+                          {!past && days !== null && (
+                            <p className="text-xs font-semibold text-primary">
+                              {days === 0
+                                ? "Today!"
+                                : days === 1
+                                  ? "Tomorrow!"
+                                  : `in ${days} days`}
+                            </p>
+                          )}
+                          {past && (
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              Ended
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => downloadICS(item.title, item.date)}
+                        className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label="Add to calendar"
+                        title="Add to calendar"
+                      >
+                        <CalendarPlus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* Submit Button */}
@@ -448,112 +514,6 @@ function Home() {
             </Button>
           </div>
         </section>
-
-        {/* Important Dates Section */}
-        <section id="dates" className="space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-bold">Important Dates</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {workshopData.home.importantDates.map((item, index) => {
-              const past = isPast(item.date);
-              const days = daysUntil(item.date);
-              return (
-                <div
-                  key={index}
-                  className={`glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
-                    past ? "opacity-50" : ""
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-3 flex-1">
-                    <div className="flex-1 flex flex-col space-y-2">
-                      <div className="flex items-start gap-2 min-h-[2.5rem]">
-                        <Calendar
-                          className={`h-4 w-4 shrink-0 mt-0.5 ${
-                            past ? "text-muted-foreground" : "text-primary"
-                          }`}
-                        />
-                        <p
-                          className={`text-sm font-semibold ${
-                            past
-                              ? "text-muted-foreground line-through"
-                              : "text-muted-foreground"
-                          }`}
-                        >
-                          {item.date}
-                        </p>
-                      </div>
-                      <h3
-                        className={`text-base font-semibold leading-tight ${
-                          past ? "text-muted-foreground" : ""
-                        }`}
-                      >
-                        {item.title}
-                      </h3>
-                      <div className="mt-auto">
-                        {!past && days !== null && (
-                          <p className="text-xs font-semibold text-primary">
-                            {days === 0
-                              ? "Today!"
-                              : days === 1
-                                ? "Tomorrow!"
-                                : `in ${days} days`}
-                          </p>
-                        )}
-                        {past && (
-                          <p className="text-xs font-semibold text-muted-foreground">
-                            Ended
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => downloadICS(item.title, item.date)}
-                      className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
-                      aria-label="Add to calendar"
-                      title="Add to calendar"
-                    >
-                      <CalendarPlus className="h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Info + Latest News Section */}
-        <div className="space-y-12">
-          {/* Info Section */}
-          <div className="glass-strong flex items-start gap-4 rounded-2xl p-8 shadow-lg card-hover">
-            <Info className="h-6 w-6 shrink-0 text-primary mt-1" />
-            <p className="text-base leading-relaxed">
-              We are accepting self-nominations to present a poster at the FOUND
-              Workshop Poster Session at ECCV 2026. The nomination deadline is{" "}
-              <span className="font-semibold text-primary">
-                Wednesday, August 19, 2026, 23:59 AoE
-              </span>
-              . Please check the topics of interest below and submit your
-              nomination through the Google Form linked in the Call for Poster
-              Nominations section.
-            </p>
-          </div>
-
-          {/* Latest News Section */}
-          <section id="news" className="space-y-8">
-            <div className="space-y-3">
-              <h2 className="font-bold">Latest News</h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-            </div>
-            <NewsCarousel
-              items={[...workshopData.home.latestNews].sort(
-                (a, b) =>
-                  new Date(b.date).getTime() - new Date(a.date).getTime(),
-              )}
-            />
-          </section>
-        </div>
 
         {/* Organizers */}
         <section id="organizers" className="space-y-8">
@@ -598,41 +558,30 @@ function Home() {
             <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
           </div>
 
-          {/* Intro card */}
-          <div className="relative overflow-hidden rounded-2xl p-px bg-gradient-to-br from-primary/40 via-primary/15 to-transparent">
-            <div className="rounded-2xl bg-card/80 backdrop-blur-sm p-8 md:p-10 space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Handshake className="h-5 w-5" />
-                </div>
-                <h3 className="text-2xl font-bold">
-                  {workshopData.sponsorship.subtitle}
-                </h3>
-              </div>
-              <p className="text-base leading-relaxed text-foreground/80">
-                {workshopData.sponsorship.intro}
-              </p>
-              <div className="rounded-xl border border-border/40 bg-background/60 backdrop-blur-sm px-5 py-4 flex items-start gap-3">
-                <Info
-                  className="h-4 w-4 shrink-0 text-primary mt-0.5"
-                  aria-hidden="true"
-                />
-                <p className="text-sm leading-relaxed text-foreground/80">
-                  <span className="font-semibold text-foreground">
-                    Joint sponsorship:
-                  </span>{" "}
-                  {renderWithLimitLink(workshopData.sponsorship.jointNote)}
-                </p>
-              </div>
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {workshopData.sponsorship.intro}
+          </p>
+
+          {/* Joint sponsorship — subtle callout with left border, mirrors CFP "About this format" */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-3">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">Joint sponsorship</h3>
             </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {renderWithLimitLink(workshopData.sponsorship.jointNote)}
+            </p>
           </div>
 
-          {/* Benefits */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold">
+          {/* Benefits — flat grid, no card container */}
+          <div className="space-y-5">
+            <h3 className="text-xl font-bold">
               {workshopData.sponsorship.benefitsTitle}
             </h3>
-            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3">
               {workshopData.sponsorship.benefits.map((benefit, index) => {
                 const Icon =
                   benefit.icon === "Megaphone"
@@ -641,10 +590,7 @@ function Home() {
                       ? LayoutPanelTop
                       : Eye;
                 return (
-                  <div
-                    key={index}
-                    className="glass rounded-2xl p-7 md:p-8 border shadow-md card-hover space-y-3"
-                  >
+                  <div key={index} className="space-y-3">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
@@ -660,7 +606,7 @@ function Home() {
             </div>
           </div>
 
-          {/* CTA */}
+          {/* CTA — kept as card, parallel to CFP Submit Button */}
           <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
             <h3 className="text-xl font-bold">
               {workshopData.sponsorship.cta.title}
@@ -690,7 +636,7 @@ function Home() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {workshopData.contact.contactInfo.map((info, index) => (
-              <Card key={index} className="glass border card-hover">
+              <Card key={index} className="glass border">
                 <CardHeader className="space-y-4">
                   <CardTitle className="flex items-center gap-3 text-xl">
                     {info.icon === "Mail" && (

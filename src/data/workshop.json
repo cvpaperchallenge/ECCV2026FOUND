@@ -32,18 +32,6 @@
         "title": "Workshop Date",
         "date": "September 9, 2026 (AM)"
       }
-    ],
-    "latestNews": [
-      {
-        "title": "Workshop page open",
-        "date": "June 30, 2026",
-        "content": "We are excited to announce that the 2nd FOUND Workshop page for ECCV 2026 is now live. We will continue to add information, so please check back regularly for updates."
-      },
-      {
-        "title": "Call for Poster Nominations opened",
-        "date": "July 1, 2026",
-        "content": "We are now accepting self-nominations to present a poster at the FOUND Workshop Poster Session at ECCV 2026. Please submit your nomination through the Google Form linked in the Call for Poster Nominations section by August 19, 2026, 23:59 AoE. Multiple submissions are welcome — one form per nominated work."
-      }
     ]
   },
   "schedule": {
