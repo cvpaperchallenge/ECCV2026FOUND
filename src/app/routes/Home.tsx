@@ -230,7 +230,7 @@ function Home() {
                 (topic, index) => (
                   <div
                     key={index}
-                    className="glass flex items-start gap-4 rounded-xl p-6 border card-hover"
+                    className="glass flex items-start gap-4 rounded-xl p-6 border"
                   >
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">
                       {index + 1}
@@ -639,7 +639,7 @@ function Home() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {workshopData.contact.contactInfo.map((info, index) => (
-              <Card key={index} className="glass border card-hover">
+              <Card key={index} className="glass border">
                 <CardHeader className="space-y-4">
                   <CardTitle className="flex items-center gap-3 text-xl">
                     {info.icon === "Mail" && (
