@@ -95,11 +95,10 @@
         "website": "https://www.amirbar.net"
       },
       {
-        "name": "To Be Announced",
-        "affiliation": "",
-        "photo": "",
-        "website": "",
-        "tba": true
+        "name": "Anastasia Varava",
+        "affiliation": "SEBx / Link",
+        "photo": "/program/anastasia.varava.jpg",
+        "website": "https://www.linkedin.com/in/anastasia-varava/"
       }
     ],
     "acceptedPapers": {
