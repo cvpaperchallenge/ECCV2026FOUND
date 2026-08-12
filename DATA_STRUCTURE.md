@@ -70,7 +70,13 @@ The template previously used **9 separate JSON files**. They have been consolida
 → `workshop.json` → `home.importantDates` OR `schedule.importantDates`
 
 ### "Where do I add sponsors?"
-→ `extras.json` → `supporters.supporters`
+→ `workshop.json` → `sponsors.sponsors` (logo cards shown on the homepage)
+
+Each entry takes `name`, `logo`, `url`, and `padding`. The cards are a fixed
+240×240px square, and `padding` is the clear space inside it in pixels — lower it
+for wide logos, raise it for square ones, so logos of different aspect ratios
+read at a similar size. Logo files live in `public/sponsors/` and should be
+trimmed of any transparent margin so `padding` is the only thing controlling it.
 
 ### "Where do I configure awards?"
 → `extras.json` → `awards`

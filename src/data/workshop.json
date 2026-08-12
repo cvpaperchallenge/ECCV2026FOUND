@@ -221,6 +221,30 @@
       }
     ]
   },
+  "sponsors": {
+    "title": "Our Sponsors",
+    "intro": "The 2nd FOUND Workshop at ECCV 2026 is made possible by the sponsors below. We thank them for their commitment to this workshop and to the researchers and practitioners it brings together.",
+    "sponsors": [
+      {
+        "name": "Sansan",
+        "logo": "/sponsors/sansan.png",
+        "url": "https://www.sansan.com/en/",
+        "padding": 56
+      },
+      {
+        "name": "SB Intuitions",
+        "logo": "/sponsors/sb-intuitions.png",
+        "url": "https://www.sbintuitions.co.jp/en/",
+        "padding": 24
+      },
+      {
+        "name": "CADDi",
+        "logo": "/sponsors/caddi.png",
+        "url": "https://caddi.com/en-us/",
+        "padding": 72
+      }
+    ]
+  },
   "sponsorship": {
     "title": "Sponsorship Opportunities",
     "subtitle": "Support FOUND Workshop",
