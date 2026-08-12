@@ -81,7 +81,7 @@ export function Footer() {
               Organizers
             </Link>
             <Link
-              to="/#sponsorship"
+              to="/#sponsors"
               className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
             >
               Sponsors
