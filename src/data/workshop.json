@@ -228,19 +228,19 @@
       {
         "name": "Sansan",
         "logo": "/sponsors/sansan.png",
-        "url": "",
+        "url": "https://www.sansan.com/en/",
         "padding": 56
       },
       {
         "name": "SB Intuitions",
         "logo": "/sponsors/sb-intuitions.png",
-        "url": "",
+        "url": "https://www.sbintuitions.co.jp/en/",
         "padding": 24
       },
       {
         "name": "CADDi",
         "logo": "/sponsors/caddi.png",
-        "url": "",
+        "url": "https://caddi.com/en-us/",
         "padding": 72
       }
     ]
