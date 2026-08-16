@@ -57,11 +57,12 @@ export function Header() {
               <NavigationMenuList className="gap-2">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.path}>
-                    <Link to={item.path}>
-                      <NavigationMenuLink className="bg-transparent hover:bg-primary/10 font-medium transition-colors px-4 py-2 rounded-lg">
-                        {item.name}
-                      </NavigationMenuLink>
-                    </Link>
+                    <NavigationMenuLink
+                      asChild
+                      className="bg-transparent hover:bg-primary/10 font-medium transition-colors px-4 py-2 rounded-lg"
+                    >
+                      <Link to={item.path}>{item.name}</Link>
+                    </NavigationMenuLink>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
