@@ -75,12 +75,6 @@ export function Footer() {
               Speakers
             </Link>
             <Link
-              to="/#cfp"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
-            >
-              Poster Nominations
-            </Link>
-            <Link
               to="/#organizers"
               className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
             >

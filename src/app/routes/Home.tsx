@@ -295,32 +295,24 @@ function Home() {
             </span>
           </p>
 
-          <ol className="space-y-4">
+          <ol className="divide-y divide-border/50 border-y border-border/50">
             {workshopData.schedule.workshopProgram.day1.schedule.map(
               (item, index) => (
                 <li
                   key={index}
-                  className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-5"
+                  className="grid gap-x-6 gap-y-1.5 py-3.5 sm:grid-cols-[9.5rem_11rem_1fr] sm:items-baseline"
                 >
-                  <span className="self-start sm:self-baseline shrink-0 rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-semibold tabular-nums text-primary sm:w-36 sm:text-center">
+                  <span className="justify-self-start rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-semibold tabular-nums text-primary sm:w-full sm:text-center">
                     {item.time}
                   </span>
-                  <div className="min-w-0 flex-1 space-y-0.5">
-                    {item.presenter ? (
-                      <>
-                        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                          {item.session}
-                        </p>
-                        <p className="text-base font-semibold leading-snug">
-                          {item.presenter}
-                        </p>
-                      </>
-                    ) : (
-                      <p className="text-base font-semibold leading-snug">
-                        {item.session}
-                      </p>
-                    )}
-                  </div>
+                  <p className="text-base font-semibold leading-snug">
+                    {item.session}
+                  </p>
+                  {item.presenter && (
+                    <p className="text-base leading-snug text-foreground/70">
+                      {item.presenter}
+                    </p>
+                  )}
                 </li>
               ),
             )}

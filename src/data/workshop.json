@@ -60,49 +60,49 @@
         "location": "Malmö, Sweden (Room TBD)",
         "schedule": [
           {
-            "time": "08:30 - 08:45",
+            "time": "08:30 – 08:45",
             "session": "Opening Remarks",
             "presenter": "Yoshihiro Fukuhara",
             "slides": ""
           },
           {
-            "time": "08:45 - 09:15",
+            "time": "08:45 – 09:15",
             "session": "Invited Talk 1",
             "presenter": "Iro Armeni",
             "slides": ""
           },
           {
-            "time": "09:15 - 09:45",
+            "time": "09:15 – 09:45",
             "session": "Invited Talk 2",
             "presenter": "Amir Bar",
             "slides": ""
           },
           {
-            "time": "09:45 - 10:00",
+            "time": "09:45 – 10:00",
             "session": "Short Break",
             "presenter": "",
             "slides": ""
           },
           {
-            "time": "10:00 - 10:30",
+            "time": "10:00 – 10:30",
             "session": "Invited Talk 3",
             "presenter": "Anastasia Varava",
             "slides": ""
           },
           {
-            "time": "10:30 - 11:00",
+            "time": "10:30 – 11:00",
             "session": "Invited Talk 4",
             "presenter": "Marc Pollefeys",
             "slides": ""
           },
           {
-            "time": "11:00 - 11:15",
+            "time": "11:00 – 11:15",
             "session": "Closing Remarks",
             "presenter": "",
             "slides": ""
           },
           {
-            "time": "11:30 - 12:30",
+            "time": "11:30 – 12:30",
             "session": "Poster Session",
             "presenter": "",
             "slides": ""

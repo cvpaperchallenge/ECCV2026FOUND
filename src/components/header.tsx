@@ -13,12 +13,13 @@ import {
 } from "./ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
 
+// Poster Nominations is deliberately left out: the call has closed, so the
+// section is archival and does not need to compete for room in the nav.
 const navItems = [
   { name: "Home", path: "/" },
   { name: "Overview", path: "/#about" },
   { name: "Program", path: "/#program" },
   { name: "Speakers", path: "/#speakers" },
-  { name: "Poster Nominations", path: "/#cfp" },
   { name: "Organizers", path: "/#organizers" },
   { name: "Sponsors", path: "/#sponsors" },
   { name: "Contact", path: "/#contact" },
@@ -52,10 +53,10 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-6">
-          {/* Desktop Navigation — shown from xl, not md: eight items plus the
-              logo need the full 6xl container, and below that they wrapped
+          {/* Desktop Navigation — shown from lg, not md: seven items plus the
+              logo do not fit on one line at 768px, where they used to wrap
               mid-word. The sheet below covers everything narrower. */}
-          <div className="hidden xl:flex">
+          <div className="hidden lg:flex">
             <NavigationMenu>
               <NavigationMenuList className="gap-2">
                 {navItems.map((item) => (
@@ -76,7 +77,7 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <Sheet>
-            <SheetTrigger asChild className="xl:hidden">
+            <SheetTrigger asChild className="lg:hidden">
               <Button variant="ghost" size="icon" aria-label="Menu">
                 <Menu className="h-5 w-5" />
               </Button>
