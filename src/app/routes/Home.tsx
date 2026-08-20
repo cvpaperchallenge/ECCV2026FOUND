@@ -15,7 +15,7 @@ import {
   Building2,
   Lock,
 } from "lucide-react";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
 
 import {
@@ -82,8 +82,8 @@ function Home() {
   const structuredData = generateWorkshopStructuredData({
     name: workshopData.home.title,
     description: workshopData.home.overview.mission,
-    startDate: "2026-09-09T09:00:00",
-    endDate: "2026-09-09T13:00:00",
+    startDate: "2026-09-09T08:30:00",
+    endDate: "2026-09-09T12:30:00",
     location: {
       name: workshopData.home.eventInfo.venue,
       address: workshopData.home.eventInfo.location,
@@ -159,7 +159,7 @@ function Home() {
                 <div className="flex flex-col leading-tight text-left min-w-0">
                   <time
                     className="font-semibold truncate"
-                    dateTime="2026-09-09T09:00"
+                    dateTime="2026-09-09T08:30"
                   >
                     {workshopData.home.eventInfo.date}
                   </time>
@@ -188,12 +188,11 @@ function Home() {
                 passed, leaving the program as the next milestone. */}
             <div className="w-full max-w-sm">
               <Button
-                variant="outline"
+                asChild
                 size="lg"
-                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl opacity-50 cursor-not-allowed w-full"
-                disabled
+                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl w-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
               >
-                View Program (Coming Soon)
+                <Link to="/#program">View Program</Link>
               </Button>
             </div>
           </div>
@@ -269,6 +268,63 @@ function Home() {
               </p>
             </div>
           </details>
+        </section>
+
+        {/* Program Section — flat, like the nomination guidelines and the
+            sponsor benefits: a schedule is a list, not a table, so it carries
+            no card of its own. The time sits in the same primary/10 chip the
+            numbered lists use, which keeps the left edge scannable, and the
+            session type is a kicker above the presenter so a talk title can
+            slot in underneath once those are announced. */}
+        <section id="program" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Workshop Program</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+
+          {/* Date and venue are omitted here on purpose — the hero states both
+              prominently. */}
+          <p className="flex items-start gap-2 text-sm text-muted-foreground">
+            <Info
+              className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+              aria-hidden="true"
+            />
+            <span className="leading-relaxed">
+              All times are local to Malmö. The room assignment will be
+              announced closer to the event.
+            </span>
+          </p>
+
+          <ol className="space-y-4">
+            {workshopData.schedule.workshopProgram.day1.schedule.map(
+              (item, index) => (
+                <li
+                  key={index}
+                  className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-5"
+                >
+                  <span className="self-start sm:self-baseline shrink-0 rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-semibold tabular-nums text-primary sm:w-36 sm:text-center">
+                    {item.time}
+                  </span>
+                  <div className="min-w-0 flex-1 space-y-0.5">
+                    {item.presenter ? (
+                      <>
+                        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                          {item.session}
+                        </p>
+                        <p className="text-base font-semibold leading-snug">
+                          {item.presenter}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-base font-semibold leading-snug">
+                        {item.session}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ),
+            )}
+          </ol>
         </section>
 
         {/* Invited Speakers Section */}

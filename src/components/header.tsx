@@ -16,6 +16,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
 const navItems = [
   { name: "Home", path: "/" },
   { name: "Overview", path: "/#about" },
+  { name: "Program", path: "/#program" },
   { name: "Speakers", path: "/#speakers" },
   { name: "Poster Nominations", path: "/#cfp" },
   { name: "Organizers", path: "/#organizers" },
@@ -51,15 +52,17 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-6">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex">
+          {/* Desktop Navigation — shown from xl, not md: eight items plus the
+              logo need the full 6xl container, and below that they wrapped
+              mid-word. The sheet below covers everything narrower. */}
+          <div className="hidden xl:flex">
             <NavigationMenu>
               <NavigationMenuList className="gap-2">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.path}>
                     <NavigationMenuLink
                       asChild
-                      className="bg-transparent hover:bg-primary/10 font-medium transition-colors px-4 py-2 rounded-lg"
+                      className="bg-transparent hover:bg-primary/10 font-medium transition-colors px-4 py-2 rounded-lg whitespace-nowrap"
                     >
                       <Link to={item.path}>{item.name}</Link>
                     </NavigationMenuLink>
@@ -73,7 +76,7 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <Sheet>
-            <SheetTrigger asChild className="md:hidden">
+            <SheetTrigger asChild className="xl:hidden">
               <Button variant="ghost" size="icon" aria-label="Menu">
                 <Menu className="h-5 w-5" />
               </Button>
