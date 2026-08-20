@@ -302,7 +302,11 @@ function Home() {
                   key={index}
                   className="grid gap-x-6 gap-y-1.5 py-4 sm:grid-cols-[9.5rem_1fr] sm:items-baseline"
                 >
-                  <span className="justify-self-start rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-semibold tabular-nums text-primary sm:w-full sm:text-center">
+                  {/* The chip earns its keep as a column marker once the row
+                      is side by side. Stacked, its padding pushed the time in
+                      from the names below it, so below sm it drops back to
+                      plain primary text and the left edge stays flush. */}
+                  <span className="justify-self-start text-sm font-semibold tabular-nums text-primary sm:w-full sm:rounded-lg sm:bg-primary/10 sm:px-3 sm:py-1.5 sm:text-center">
                     {item.time}
                   </span>
                   {/* Who first, what second: the speaker is the reason to turn
