@@ -300,19 +300,33 @@ function Home() {
               (item, index) => (
                 <li
                   key={index}
-                  className="grid gap-x-6 gap-y-1.5 py-3.5 sm:grid-cols-[9.5rem_11rem_1fr] sm:items-baseline"
+                  className="grid gap-x-6 gap-y-1.5 py-4 sm:grid-cols-[9.5rem_1fr] sm:items-baseline"
                 >
                   <span className="justify-self-start rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-semibold tabular-nums text-primary sm:w-full sm:text-center">
                     {item.time}
                   </span>
-                  <p className="text-base font-semibold leading-snug">
-                    {item.session}
-                  </p>
-                  {item.presenter && (
-                    <p className="text-base leading-snug text-foreground/70">
-                      {item.presenter}
-                    </p>
-                  )}
+                  {/* Who first, what second: the speaker is the reason to turn
+                      up for a slot, so the name is the headline and the session
+                      type is the caption under it. Slots with nobody on stage
+                      put the session name on the headline line instead, a step
+                      smaller and softer so the names carry the section. Either
+                      way the first line stays level with the time chip. */}
+                  <div className="space-y-0.5">
+                    {item.presenter ? (
+                      <>
+                        <p className="text-base sm:text-lg font-semibold leading-snug">
+                          {item.presenter}
+                        </p>
+                        <p className="text-sm leading-snug text-muted-foreground">
+                          {item.session}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-base font-semibold leading-snug text-foreground/70">
+                        {item.session}
+                      </p>
+                    )}
+                  </div>
                 </li>
               ),
             )}
