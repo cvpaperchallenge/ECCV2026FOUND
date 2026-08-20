@@ -4,7 +4,7 @@ import {
   MapPin,
   ExternalLink,
   Info,
-  // CalendarPlus,
+  CalendarPlus,
   Megaphone,
   LayoutPanelTop,
   Eye,
@@ -30,7 +30,7 @@ import peopleData from "../../data/people.json";
 import type { Route } from "./+types/Home";
 import { buildMeta } from "@/lib/seo";
 import { generateWorkshopStructuredData } from "@/lib/structured-data";
-// import { downloadICS, isPast, daysUntil } from "@/lib/calendar";
+import { downloadICS, isPast, daysUntil } from "@/lib/calendar";
 
 const LIMIT_WORKSHOP_URL = "https://eccv2026-limit-workshop.limitlab.xyz/";
 
@@ -670,11 +670,7 @@ function Home() {
             </ul>
           </div>
 
-          {/* Important Dates — hidden now that the call has closed and the
-              poster session is moving to invited posters, so no milestone
-              here is still actionable. The home.importantDates data stays in
-              workshop.json so this can be restored as it was. */}
-          {/*
+          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
           <div id="dates" className="space-y-5">
             <h3 className="text-xl font-bold">Important Dates</h3>
             <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
@@ -744,7 +740,6 @@ function Home() {
               })}
             </div>
           </div>
-          */}
 
           {/* Nomination status — this is where the submit CTA used to sit. The
               form link is dropped rather than demoted to a reference: unlike an
