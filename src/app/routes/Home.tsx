@@ -415,164 +415,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Call for Poster Nominations Section — kept as an archival record now
-            that the call has closed. The heading badge and the muted accent bar
-            mark it as past; the guidelines below still describe what invited
-            presenters agreed to, which is why the section is retained rather
-            than dropped. */}
-        <section id="cfp" className="space-y-8">
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-3">
-              <h2 className="font-bold">Call for Poster Nominations</h2>
-              <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                Closed
-              </span>
-            </div>
-            <div className="h-1 w-20 bg-gradient-to-r from-muted-foreground/40 to-muted-foreground/10 rounded-full" />
-          </div>
-
-          <p className="text-lg leading-relaxed text-foreground/90">
-            {workshopData.callForPosterNominations.intro}
-          </p>
-
-          {/* Format Notice — subtle callout with left border */}
-          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Info
-                className="h-5 w-5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
-              <h3 className="text-lg font-bold">
-                {workshopData.callForPosterNominations.formatNotice.title}
-              </h3>
-            </div>
-            <p className="text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.formatNotice.intro}
-            </p>
-            <ul className="space-y-2.5">
-              {workshopData.callForPosterNominations.formatNotice.points.map(
-                (point, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                    <p className="text-base leading-relaxed">
-                      <span className="font-semibold text-foreground">
-                        {point.label}
-                      </span>{" "}
-                      <span className="text-foreground/80">{point.text}</span>
-                    </p>
-                  </li>
-                ),
-              )}
-            </ul>
-            <p className="text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.formatNotice.closing}
-            </p>
-          </div>
-
-          {/* Nomination Guidelines — flat content */}
-          <div className="space-y-5">
-            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
-            <ul className="space-y-3">
-              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
-                (guideline, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
-                      {index + 1}
-                    </div>
-                    <p className="text-base leading-relaxed">{guideline}</p>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
-          <div id="dates" className="space-y-5">
-            <h3 className="text-xl font-bold">Important Dates</h3>
-            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
-              {workshopData.home.importantDates.map((item, index) => {
-                const past = isPast(item.date);
-                const days = daysUntil(item.date);
-                return (
-                  <div
-                    key={index}
-                    className={`snap-start shrink-0 basis-[85%] sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-12px)] glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
-                      past ? "opacity-50" : ""
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-3 flex-1">
-                      <div className="flex-1 flex flex-col space-y-2">
-                        <div className="flex items-start gap-2 min-h-[2.5rem]">
-                          <Calendar
-                            className={`h-4 w-4 shrink-0 mt-0.5 ${
-                              past ? "text-muted-foreground" : "text-primary"
-                            }`}
-                          />
-                          <p
-                            className={`text-sm font-semibold ${
-                              past
-                                ? "text-muted-foreground line-through"
-                                : "text-muted-foreground"
-                            }`}
-                          >
-                            {item.date}
-                          </p>
-                        </div>
-                        <h4
-                          className={`text-base font-semibold leading-tight ${
-                            past ? "text-muted-foreground" : ""
-                          }`}
-                        >
-                          {item.title}
-                        </h4>
-                        <div className="mt-auto">
-                          {!past && days !== null && (
-                            <p className="text-xs font-semibold text-primary">
-                              {days === 0
-                                ? "Today!"
-                                : days === 1
-                                  ? "Tomorrow!"
-                                  : `in ${days} days`}
-                            </p>
-                          )}
-                          {past && (
-                            <p className="text-xs font-semibold text-muted-foreground">
-                              Ended
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => downloadICS(item.title, item.date)}
-                        className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
-                        aria-label="Add to calendar"
-                        title="Add to calendar"
-                      >
-                        <CalendarPlus className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Nomination status — this is where the submit CTA used to sit. The
-              form link is dropped rather than demoted to a reference: unlike an
-              OpenReview venue there is nothing to read there, only a form that
-              would still accept a response. `submission.url` stays in
-              workshop.json as the record of where nominations were collected. */}
-          <div className="glass rounded-2xl border p-8 text-center space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-              <Lock className="h-3.5 w-3.5" aria-hidden="true" />
-              Nominations Closed
-            </div>
-            <p className="mx-auto max-w-2xl text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.submission.description}
-            </p>
-          </div>
-        </section>
-
         {/* Organizers */}
         <section id="organizers" className="space-y-8">
           <div className="space-y-3">
@@ -752,6 +594,166 @@ function Home() {
                 <ArrowDown className="h-4 w-4" />
               </a>
             </Button>
+          </div>
+        </section>
+
+        {/* Call for Poster Nominations Section — an archival record now that
+            the call has closed, so it sits near the foot of the page rather
+            than between Speakers and Organizers. It is kept rather than
+            dropped because the guidelines still describe what invited
+            presenters agreed to, and the Important Dates below carry the
+            notification date. The heading badge and the muted accent bar mark
+            it as past. */}
+        <section id="cfp" className="space-y-8">
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-bold">Call for Poster Nominations</h2>
+              <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Closed
+              </span>
+            </div>
+            <div className="h-1 w-20 bg-gradient-to-r from-muted-foreground/40 to-muted-foreground/10 rounded-full" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {workshopData.callForPosterNominations.intro}
+          </p>
+
+          {/* Format Notice — subtle callout with left border */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">
+                {workshopData.callForPosterNominations.formatNotice.title}
+              </h3>
+            </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.intro}
+            </p>
+            <ul className="space-y-2.5">
+              {workshopData.callForPosterNominations.formatNotice.points.map(
+                (point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <p className="text-base leading-relaxed">
+                      <span className="font-semibold text-foreground">
+                        {point.label}
+                      </span>{" "}
+                      <span className="text-foreground/80">{point.text}</span>
+                    </p>
+                  </li>
+                ),
+              )}
+            </ul>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.closing}
+            </p>
+          </div>
+
+          {/* Nomination Guidelines — flat content */}
+          <div className="space-y-5">
+            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
+            <ul className="space-y-3">
+              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
+                (guideline, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
+                      {index + 1}
+                    </div>
+                    <p className="text-base leading-relaxed">{guideline}</p>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
+
+          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
+          <div id="dates" className="space-y-5">
+            <h3 className="text-xl font-bold">Important Dates</h3>
+            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+              {workshopData.home.importantDates.map((item, index) => {
+                const past = isPast(item.date);
+                const days = daysUntil(item.date);
+                return (
+                  <div
+                    key={index}
+                    className={`snap-start shrink-0 basis-[85%] sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-12px)] glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
+                      past ? "opacity-50" : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3 flex-1">
+                      <div className="flex-1 flex flex-col space-y-2">
+                        <div className="flex items-start gap-2 min-h-[2.5rem]">
+                          <Calendar
+                            className={`h-4 w-4 shrink-0 mt-0.5 ${
+                              past ? "text-muted-foreground" : "text-primary"
+                            }`}
+                          />
+                          <p
+                            className={`text-sm font-semibold ${
+                              past
+                                ? "text-muted-foreground line-through"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {item.date}
+                          </p>
+                        </div>
+                        <h4
+                          className={`text-base font-semibold leading-tight ${
+                            past ? "text-muted-foreground" : ""
+                          }`}
+                        >
+                          {item.title}
+                        </h4>
+                        <div className="mt-auto">
+                          {!past && days !== null && (
+                            <p className="text-xs font-semibold text-primary">
+                              {days === 0
+                                ? "Today!"
+                                : days === 1
+                                  ? "Tomorrow!"
+                                  : `in ${days} days`}
+                            </p>
+                          )}
+                          {past && (
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              Ended
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => downloadICS(item.title, item.date)}
+                        className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label="Add to calendar"
+                        title="Add to calendar"
+                      >
+                        <CalendarPlus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Nomination status — this is where the submit CTA used to sit. The
+              form link is dropped rather than demoted to a reference: unlike an
+              OpenReview venue there is nothing to read there, only a form that
+              would still accept a response. `submission.url` stays in
+              workshop.json as the record of where nominations were collected. */}
+          <div className="glass rounded-2xl border p-8 text-center space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+              <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+              Nominations Closed
+            </div>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.submission.description}
+            </p>
           </div>
         </section>
 
