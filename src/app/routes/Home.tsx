@@ -13,8 +13,9 @@ import {
   ChevronDown,
   ShieldCheck,
   Building2,
+  Lock,
 } from "lucide-react";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
 
 import {
@@ -81,8 +82,8 @@ function Home() {
   const structuredData = generateWorkshopStructuredData({
     name: workshopData.home.title,
     description: workshopData.home.overview.mission,
-    startDate: "2026-09-09T09:00:00",
-    endDate: "2026-09-09T13:00:00",
+    startDate: "2026-09-09T08:30:00",
+    endDate: "2026-09-09T12:30:00",
     location: {
       name: workshopData.home.eventInfo.venue,
       address: workshopData.home.eventInfo.location,
@@ -158,7 +159,7 @@ function Home() {
                 <div className="flex flex-col leading-tight text-left min-w-0">
                   <time
                     className="font-semibold truncate"
-                    dateTime="2026-09-09T09:00"
+                    dateTime="2026-09-09T08:30"
                   >
                     {workshopData.home.eventInfo.date}
                   </time>
@@ -183,29 +184,15 @@ function Home() {
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
+            {/* CTA Buttons — the nomination CTA was dropped once the deadline
+                passed, leaving the program as the next milestone. */}
+            <div className="w-full max-w-sm">
               <Button
                 asChild
                 size="lg"
                 className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl w-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
               >
-                <a
-                  href={workshopData.callForPosterNominations.submission.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Submit Nomination
-                  <ExternalLink className="ml-1 h-4 w-4" />
-                </a>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl opacity-50 cursor-not-allowed w-full"
-                disabled
-              >
-                View Program (Coming Soon)
+                <Link to="/#program">View Program</Link>
               </Button>
             </div>
           </div>
@@ -283,6 +270,73 @@ function Home() {
           </details>
         </section>
 
+        {/* Program Section — flat, like the nomination guidelines and the
+            sponsor benefits: a schedule is a list, not a table, so it carries
+            no card of its own. The time sits in the same primary/10 chip the
+            numbered lists use, which keeps the left edge scannable, and the
+            session type is a kicker above the presenter so a talk title can
+            slot in underneath once those are announced. */}
+        <section id="program" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Workshop Program</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+
+          {/* Date and venue are omitted here on purpose — the hero states both
+              prominently. */}
+          <p className="flex items-start gap-2 text-sm text-muted-foreground">
+            <Info
+              className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+              aria-hidden="true"
+            />
+            <span className="leading-relaxed">
+              All times are local to Malmö. The room assignment will be
+              announced closer to the event.
+            </span>
+          </p>
+
+          <ol className="divide-y divide-border/50 border-y border-border/50">
+            {workshopData.schedule.workshopProgram.day1.schedule.map(
+              (item, index) => (
+                <li
+                  key={index}
+                  className="grid gap-x-6 gap-y-1.5 py-4 sm:grid-cols-[9.5rem_1fr] sm:items-baseline"
+                >
+                  {/* The chip earns its keep as a column marker once the row
+                      is side by side. Stacked, its padding pushed the time in
+                      from the names below it, so below sm it drops back to
+                      plain primary text and the left edge stays flush. */}
+                  <span className="justify-self-start text-sm font-semibold tabular-nums text-primary sm:w-full sm:rounded-lg sm:bg-primary/10 sm:px-3 sm:py-1.5 sm:text-center">
+                    {item.time}
+                  </span>
+                  {/* Who first, what second: the speaker is the reason to turn
+                      up for a slot, so the name is the headline and the session
+                      type is the caption under it. Slots with nobody on stage
+                      put the session name on the headline line instead, a step
+                      smaller and softer so the names carry the section. Either
+                      way the first line stays level with the time chip. */}
+                  <div className="space-y-0.5">
+                    {item.presenter ? (
+                      <>
+                        <p className="text-base sm:text-lg font-semibold leading-snug">
+                          {item.presenter}
+                        </p>
+                        <p className="text-sm leading-snug text-muted-foreground">
+                          {item.session}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-base font-semibold leading-snug text-foreground/70">
+                        {item.session}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ),
+            )}
+          </ol>
+        </section>
+
         {/* Invited Speakers Section */}
         <section id="speakers" className="space-y-8">
           <div className="space-y-3">
@@ -358,161 +412,6 @@ function Home() {
                 </a>
               );
             })}
-          </div>
-        </section>
-
-        {/* Call for Poster Nominations Section */}
-        <section id="cfp" className="space-y-8">
-          <div className="space-y-3">
-            <h2 className="font-bold">Call for Poster Nominations</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-          </div>
-
-          <p className="text-lg leading-relaxed text-foreground/90">
-            {workshopData.callForPosterNominations.intro}
-          </p>
-
-          {/* Format Notice — subtle callout with left border */}
-          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Info
-                className="h-5 w-5 shrink-0 text-primary"
-                aria-hidden="true"
-              />
-              <h3 className="text-lg font-bold">
-                {workshopData.callForPosterNominations.formatNotice.title}
-              </h3>
-            </div>
-            <p className="text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.formatNotice.intro}
-            </p>
-            <ul className="space-y-2.5">
-              {workshopData.callForPosterNominations.formatNotice.points.map(
-                (point, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                    <p className="text-base leading-relaxed">
-                      <span className="font-semibold text-foreground">
-                        {point.label}
-                      </span>{" "}
-                      <span className="text-foreground/80">{point.text}</span>
-                    </p>
-                  </li>
-                ),
-              )}
-            </ul>
-            <p className="text-base leading-relaxed text-foreground/80">
-              {workshopData.callForPosterNominations.formatNotice.closing}
-            </p>
-          </div>
-
-          {/* Nomination Guidelines — flat content */}
-          <div className="space-y-5">
-            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
-            <ul className="space-y-3">
-              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
-                (guideline, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
-                      {index + 1}
-                    </div>
-                    <p className="text-base leading-relaxed">{guideline}</p>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
-          <div id="dates" className="space-y-5">
-            <h3 className="text-xl font-bold">Important Dates</h3>
-            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
-              {workshopData.home.importantDates.map((item, index) => {
-                const past = isPast(item.date);
-                const days = daysUntil(item.date);
-                return (
-                  <div
-                    key={index}
-                    className={`snap-start shrink-0 basis-[85%] sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-12px)] glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
-                      past ? "opacity-50" : ""
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-3 flex-1">
-                      <div className="flex-1 flex flex-col space-y-2">
-                        <div className="flex items-start gap-2 min-h-[2.5rem]">
-                          <Calendar
-                            className={`h-4 w-4 shrink-0 mt-0.5 ${
-                              past ? "text-muted-foreground" : "text-primary"
-                            }`}
-                          />
-                          <p
-                            className={`text-sm font-semibold ${
-                              past
-                                ? "text-muted-foreground line-through"
-                                : "text-muted-foreground"
-                            }`}
-                          >
-                            {item.date}
-                          </p>
-                        </div>
-                        <h4
-                          className={`text-base font-semibold leading-tight ${
-                            past ? "text-muted-foreground" : ""
-                          }`}
-                        >
-                          {item.title}
-                        </h4>
-                        <div className="mt-auto">
-                          {!past && days !== null && (
-                            <p className="text-xs font-semibold text-primary">
-                              {days === 0
-                                ? "Today!"
-                                : days === 1
-                                  ? "Tomorrow!"
-                                  : `in ${days} days`}
-                            </p>
-                          )}
-                          {past && (
-                            <p className="text-xs font-semibold text-muted-foreground">
-                              Ended
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => downloadICS(item.title, item.date)}
-                        className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
-                        aria-label="Add to calendar"
-                        title="Add to calendar"
-                      >
-                        <CalendarPlus className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
-            <p className="text-base leading-relaxed">
-              {workshopData.callForPosterNominations.submission.description}
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="text-base px-8 py-6 rounded-xl"
-            >
-              <a
-                href={workshopData.callForPosterNominations.submission.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Submit Nomination
-                <ExternalLink className="ml-1 h-4 w-4" />
-              </a>
-            </Button>
           </div>
         </section>
 
@@ -695,6 +594,166 @@ function Home() {
                 <ArrowDown className="h-4 w-4" />
               </a>
             </Button>
+          </div>
+        </section>
+
+        {/* Call for Poster Nominations Section — an archival record now that
+            the call has closed, so it sits near the foot of the page rather
+            than between Speakers and Organizers. It is kept rather than
+            dropped because the guidelines still describe what invited
+            presenters agreed to, and the Important Dates below carry the
+            notification date. The heading badge and the muted accent bar mark
+            it as past. */}
+        <section id="cfp" className="space-y-8">
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-bold">Call for Poster Nominations</h2>
+              <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Closed
+              </span>
+            </div>
+            <div className="h-1 w-20 bg-gradient-to-r from-muted-foreground/40 to-muted-foreground/10 rounded-full" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {workshopData.callForPosterNominations.intro}
+          </p>
+
+          {/* Format Notice — subtle callout with left border */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">
+                {workshopData.callForPosterNominations.formatNotice.title}
+              </h3>
+            </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.intro}
+            </p>
+            <ul className="space-y-2.5">
+              {workshopData.callForPosterNominations.formatNotice.points.map(
+                (point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <p className="text-base leading-relaxed">
+                      <span className="font-semibold text-foreground">
+                        {point.label}
+                      </span>{" "}
+                      <span className="text-foreground/80">{point.text}</span>
+                    </p>
+                  </li>
+                ),
+              )}
+            </ul>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.formatNotice.closing}
+            </p>
+          </div>
+
+          {/* Nomination Guidelines — flat content */}
+          <div className="space-y-5">
+            <h3 className="text-xl font-bold">Nomination Guidelines</h3>
+            <ul className="space-y-3">
+              {workshopData.callForPosterNominations.nominationFormat.nominationGuidelines.map(
+                (guideline, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold mt-0.5">
+                      {index + 1}
+                    </div>
+                    <p className="text-base leading-relaxed">{guideline}</p>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
+
+          {/* Important Dates — swipeable, 4-slot basis so 3 items sit left with room on right */}
+          <div id="dates" className="space-y-5">
+            <h3 className="text-xl font-bold">Important Dates</h3>
+            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+              {workshopData.home.importantDates.map((item, index) => {
+                const past = isPast(item.date);
+                const days = daysUntil(item.date);
+                return (
+                  <div
+                    key={index}
+                    className={`snap-start shrink-0 basis-[85%] sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-12px)] glass rounded-xl p-6 shadow-md border card-hover group flex flex-col ${
+                      past ? "opacity-50" : ""
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3 flex-1">
+                      <div className="flex-1 flex flex-col space-y-2">
+                        <div className="flex items-start gap-2 min-h-[2.5rem]">
+                          <Calendar
+                            className={`h-4 w-4 shrink-0 mt-0.5 ${
+                              past ? "text-muted-foreground" : "text-primary"
+                            }`}
+                          />
+                          <p
+                            className={`text-sm font-semibold ${
+                              past
+                                ? "text-muted-foreground line-through"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {item.date}
+                          </p>
+                        </div>
+                        <h4
+                          className={`text-base font-semibold leading-tight ${
+                            past ? "text-muted-foreground" : ""
+                          }`}
+                        >
+                          {item.title}
+                        </h4>
+                        <div className="mt-auto">
+                          {!past && days !== null && (
+                            <p className="text-xs font-semibold text-primary">
+                              {days === 0
+                                ? "Today!"
+                                : days === 1
+                                  ? "Tomorrow!"
+                                  : `in ${days} days`}
+                            </p>
+                          )}
+                          {past && (
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              Ended
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => downloadICS(item.title, item.date)}
+                        className="shrink-0 rounded-lg p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label="Add to calendar"
+                        title="Add to calendar"
+                      >
+                        <CalendarPlus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Nomination status — this is where the submit CTA used to sit. The
+              form link is dropped rather than demoted to a reference: unlike an
+              OpenReview venue there is nothing to read there, only a form that
+              would still accept a response. `submission.url` stays in
+              workshop.json as the record of where nominations were collected. */}
+          <div className="glass rounded-2xl border p-8 text-center space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+              <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+              Nominations Closed
+            </div>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-foreground/80">
+              {workshopData.callForPosterNominations.submission.description}
+            </p>
           </div>
         </section>
 

@@ -5,7 +5,7 @@
     "subtitle": "ECCV 2026 Workshop",
     "eventInfo": {
       "date": "September 9, 2026",
-      "time": "Morning Session",
+      "time": "8:30 AM – 12:30 PM",
       "venue": "Malmö Arena and Malmömässan",
       "location": "Malmö, Sweden"
     },
@@ -60,55 +60,49 @@
         "location": "Malmö, Sweden (Room TBD)",
         "schedule": [
           {
-            "time": "09:00 - 09:10",
+            "time": "08:30 – 08:45",
             "session": "Opening Remarks",
-            "presenter": "",
+            "presenter": "Yoshihiro Fukuhara",
             "slides": ""
           },
           {
-            "time": "09:10 - 09:40",
+            "time": "08:45 – 09:15",
             "session": "Invited Talk 1",
             "presenter": "Iro Armeni",
             "slides": ""
           },
           {
-            "time": "09:40 - 10:10",
+            "time": "09:15 – 09:45",
             "session": "Invited Talk 2",
-            "presenter": "Marc Pollefeys",
-            "slides": ""
-          },
-          {
-            "time": "10:10 - 10:20",
-            "session": "Coffee Break",
-            "presenter": "",
-            "slides": ""
-          },
-          {
-            "time": "10:20 - 10:50",
-            "session": "Invited Talk 3",
             "presenter": "Amir Bar",
             "slides": ""
           },
           {
-            "time": "10:50 - 11:20",
-            "session": "Invited Talk 4",
-            "presenter": "To Be Announced",
-            "slides": ""
-          },
-          {
-            "time": "11:20 - 12:00",
-            "session": "Oral Session",
+            "time": "09:45 – 10:00",
+            "session": "Short Break",
             "presenter": "",
             "slides": ""
           },
           {
-            "time": "12:00 - 12:10",
+            "time": "10:00 – 10:30",
+            "session": "Invited Talk 3",
+            "presenter": "Anastasia Varava",
+            "slides": ""
+          },
+          {
+            "time": "10:30 – 11:00",
+            "session": "Invited Talk 4",
+            "presenter": "Marc Pollefeys",
+            "slides": ""
+          },
+          {
+            "time": "11:00 – 11:15",
             "session": "Closing Remarks",
             "presenter": "",
             "slides": ""
           },
           {
-            "time": "12:10 - 13:10",
+            "time": "11:30 – 12:30",
             "session": "Poster Session",
             "presenter": "",
             "slides": ""
@@ -158,7 +152,7 @@
   "callForPosterNominations": {
     "title": "Call for Poster Nominations",
     "subtitle": "Self-nominate to present at the Poster Session",
-    "intro": "Nominate work you would like to present as a poster at the FOUND Workshop Poster Session. Selected nominations will be invited to present in person.",
+    "intro": "The call for poster nominations has closed. It invited work to be presented at the FOUND Workshop Poster Session, and selected nominations are now being invited to present in person.",
     "topics": {
       "core": [
         "Foundation Data creation: collection, curation, and labeling for non-Internet and domain-specific settings",
@@ -190,7 +184,7 @@
     },
     "nominationFormat": {
       "nominationGuidelines": [
-        "Nominations are submitted via the Google Form linked below",
+        "Nominations are submitted via a Google Form",
         "Provide a presentation title, a short abstract (~200 words), and presenter name and affiliation",
         "Optionally include a link to a related paper, preprint, project page, or code repository",
         "Anonymization is not required — nominations are reviewed openly by the organizers",
@@ -199,7 +193,7 @@
       ]
     },
     "submission": {
-      "description": "The nomination form is now open. Please submit your nomination through the Google Form below by August 19, 2026, 23:59 AoE.",
+      "description": "Poster nominations closed on August 19, 2026, 23:59 AoE. Thank you to everyone who nominated their work. Invitations are sent on a rolling basis, and all final decisions will be communicated by August 26, 2026.",
       "url": "https://forms.gle/RGLWnKD26vofxohN9"
     },
     "faq": [
@@ -325,8 +319,8 @@
     },
     "faq": [
       {
-        "question": "How do I nominate a poster?",
-        "answer": "Please submit your nomination via the Google Form linked in the Call for Poster Nominations section."
+        "question": "Can I still nominate a poster?",
+        "answer": "No. Poster nominations closed on August 19, 2026, 23:59 AoE. If you have questions about the poster session, please contact the organizers by email."
       },
       {
         "question": "When will invitations be announced?",
