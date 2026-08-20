@@ -13,6 +13,7 @@ import {
   ChevronDown,
   ShieldCheck,
   Building2,
+  Lock,
 } from "lucide-react";
 import { useLocation } from "react-router";
 import { Fragment, useEffect } from "react";
@@ -183,22 +184,9 @@ function Home() {
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
-              <Button
-                asChild
-                size="lg"
-                className="text-sm md:text-base px-6 py-5 md:py-6 rounded-xl w-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
-              >
-                <a
-                  href={workshopData.callForPosterNominations.submission.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Submit Nomination
-                  <ExternalLink className="ml-1 h-4 w-4" />
-                </a>
-              </Button>
+            {/* CTA Buttons — the nomination CTA was dropped once the deadline
+                passed, leaving the program as the next milestone. */}
+            <div className="w-full max-w-sm">
               <Button
                 variant="outline"
                 size="lg"
@@ -361,11 +349,20 @@ function Home() {
           </div>
         </section>
 
-        {/* Call for Poster Nominations Section */}
+        {/* Call for Poster Nominations Section — kept as an archival record now
+            that the call has closed. The heading badge and the muted accent bar
+            mark it as past; the guidelines below still describe what invited
+            presenters agreed to, which is why the section is retained rather
+            than dropped. */}
         <section id="cfp" className="space-y-8">
           <div className="space-y-3">
-            <h2 className="font-bold">Call for Poster Nominations</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-bold">Call for Poster Nominations</h2>
+              <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Closed
+              </span>
+            </div>
+            <div className="h-1 w-20 bg-gradient-to-r from-muted-foreground/40 to-muted-foreground/10 rounded-full" />
           </div>
 
           <p className="text-lg leading-relaxed text-foreground/90">
@@ -494,25 +491,19 @@ function Home() {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <div className="glass-strong rounded-2xl p-8 shadow-lg text-center space-y-4">
-            <p className="text-base leading-relaxed">
+          {/* Nomination status — this is where the submit CTA used to sit. The
+              form link is dropped rather than demoted to a reference: unlike an
+              OpenReview venue there is nothing to read there, only a form that
+              would still accept a response. `submission.url` stays in
+              workshop.json as the record of where nominations were collected. */}
+          <div className="glass rounded-2xl border p-8 text-center space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-muted/40 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+              <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+              Nominations Closed
+            </div>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-foreground/80">
               {workshopData.callForPosterNominations.submission.description}
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="text-base px-8 py-6 rounded-xl"
-            >
-              <a
-                href={workshopData.callForPosterNominations.submission.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Submit Nomination
-                <ExternalLink className="ml-1 h-4 w-4" />
-              </a>
-            </Button>
           </div>
         </section>
 
