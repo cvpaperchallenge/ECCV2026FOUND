@@ -83,12 +83,6 @@
         "website": "https://ir0.github.io"
       },
       {
-        "name": "Marc Pollefeys",
-        "affiliation": "ETH Zurich / Microsoft Mixed Reality and AI Lab",
-        "photo": "/program/marc.pollefeys.jpg",
-        "website": "https://people.inf.ethz.ch/pomarc"
-      },
-      {
         "name": "Amir Bar",
         "affiliation": "Imperial College London / AMI Labs",
         "photo": "/program/amir.bar.jpg",
@@ -99,6 +93,12 @@
         "affiliation": "SEBx / Link",
         "photo": "/program/anastasia.varava.jpg",
         "website": "https://www.linkedin.com/in/anastasia-varava/"
+      },
+      {
+        "name": "Marc Pollefeys",
+        "affiliation": "ETH Zurich / Microsoft Mixed Reality and AI Lab",
+        "photo": "/program/marc.pollefeys.jpg",
+        "website": "https://people.inf.ethz.ch/pomarc"
       }
     ],
     "acceptedPapers": {
