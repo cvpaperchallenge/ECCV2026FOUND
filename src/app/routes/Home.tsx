@@ -290,8 +290,8 @@ function Home() {
               aria-hidden="true"
             />
             <span className="leading-relaxed">
-              All times are local to Malmö. The room assignment will be
-              announced closer to the event.
+              All times are local to Malmö. The workshop takes place in
+              Malmömässan E1.
             </span>
           </p>
 
