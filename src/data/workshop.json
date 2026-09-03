@@ -6,7 +6,7 @@
     "eventInfo": {
       "date": "September 9, 2026",
       "time": "8:30 AM – 12:30 PM",
-      "venue": "Malmö Arena and Malmömässan",
+      "venue": "Malmömässan E1",
       "location": "Malmö, Sweden"
     },
     "overview": {
@@ -57,7 +57,7 @@
     "workshopProgram": {
       "day1": {
         "date": "September 9, 2026",
-        "location": "Malmö, Sweden (Room TBD)",
+        "location": "Malmömässan E1, Malmö, Sweden",
         "schedule": [
           {
             "time": "08:30 – 08:45",
@@ -282,7 +282,7 @@
         "type": "Location",
         "icon": "MapPin",
         "description": "The workshop will be held at:",
-        "value": "Malmö Arena and Malmömässan\nMalmö, Sweden"
+        "value": "Malmömässan E1\nMalmö, Sweden"
       }
     ],
     "contactForm": {
