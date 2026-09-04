@@ -301,8 +301,8 @@ function Home() {
               aria-hidden="true"
             />
             <span className="leading-relaxed">
-              All times are local to Malmö. The workshop takes place in
-              Malmömässan E1.
+              All times are local to Malmö. The talks take place in Malmömässan
+              E1; the poster session is in the Malmömässan Exhibit Hall.
             </span>
           </p>
 
@@ -325,7 +325,13 @@ function Home() {
                       type is the caption under it. Slots with nobody on stage
                       put the session name on the headline line instead, a step
                       smaller and softer so the names carry the section. Either
-                      way the first line stays level with the time chip. */}
+                      way the first line stays level with the time chip.
+
+                      The caption line under those stage-free slots is where a
+                      room goes when it differs from the one in the note above
+                      the schedule — the poster boards are not in E1, and a
+                      reader planning their morning should see that on the row
+                      itself rather than have to hunt for it. */}
                   <div className="space-y-0.5">
                     {item.presenter ? (
                       <>
@@ -337,9 +343,20 @@ function Home() {
                         </p>
                       </>
                     ) : (
-                      <p className="text-base font-semibold leading-snug text-foreground/70">
-                        {item.session}
-                      </p>
+                      <>
+                        <p className="text-base font-semibold leading-snug text-foreground/70">
+                          {item.session}
+                        </p>
+                        {item.location && (
+                          <p className="flex items-center gap-1.5 text-sm leading-snug text-muted-foreground">
+                            <MapPin
+                              className="h-3.5 w-3.5 shrink-0 text-primary"
+                              aria-hidden="true"
+                            />
+                            {item.location}
+                          </p>
+                        )}
+                      </>
                     )}
                   </div>
                 </li>
@@ -447,6 +464,48 @@ function Home() {
             The following {invitedPosters.length} posters have been invited to
             the FOUND Workshop poster session.
           </p>
+
+          {/* Logistics ahead of the list: a presenter needs the hall and the
+              board size before they need to find their own row, and an
+              attendee needs the hall to know where to walk to — the talks are
+              in Malmömässan E1 but the boards are not. Left-bordered callout
+              because that is the shape this page already uses for practical
+              points that must not be missed, as in the CFP format notice. */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">
+                {
+                  workshopData.schedule.presenterGuidelines.posterPresentation
+                    .title
+                }
+              </h3>
+            </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {
+                workshopData.schedule.presenterGuidelines.posterPresentation
+                  .intro
+              }
+            </p>
+            <ul className="space-y-2.5">
+              {workshopData.schedule.presenterGuidelines.posterPresentation.points.map(
+                (point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <p className="text-base leading-relaxed">
+                      <span className="font-semibold text-foreground">
+                        {point.label}
+                      </span>{" "}
+                      <span className="text-foreground/80">{point.text}</span>
+                    </p>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
 
           <ol className="divide-y divide-border/50 border-y border-border/50">
             {invitedPosters.map((poster, index) => (
