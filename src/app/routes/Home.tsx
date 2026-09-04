@@ -509,32 +509,51 @@ function Home() {
 
           <ol className="divide-y divide-border/50 border-y border-border/50">
             {invitedPosters.map((poster, index) => (
-              <li key={index} className="space-y-2.5 py-5">
-                <div className="space-y-0.5">
-                  <h3 className="text-base sm:text-lg font-semibold leading-snug">
-                    {poster.title}
-                  </h3>
-                  <p className="text-sm leading-snug text-muted-foreground">
-                    {poster.authors}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {poster.links.map((link, linkIndex) => (
-                    <a
-                      key={linkIndex}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      // The chip reads "arXiv" on its own, so the paper it
-                      // belongs to is named here for anyone tabbing the list
-                      // or hearing the links read out in isolation.
-                      aria-label={`${poster.title} — ${link.label}`}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-                    >
-                      {link.label}
-                      <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                    </a>
-                  ))}
+              <li
+                key={index}
+                className="grid gap-x-6 gap-y-3 py-5 sm:grid-cols-[8rem_1fr] sm:items-baseline"
+              >
+                {/* The board number takes the left column the Program schedule
+                    gives its time chip, so a presenter hunting for their own
+                    board reads down one edge instead of through twelve titles.
+                    It is bigger and bolder than the time chip because it is
+                    the one thing on the row someone has to act on, and
+                    tabular-nums keeps the digits in a column. */}
+                <span className="justify-self-start inline-flex items-baseline gap-2 whitespace-nowrap rounded-lg bg-primary/10 px-3 py-2 text-primary sm:w-full sm:justify-center">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest opacity-70">
+                    Board
+                  </span>
+                  <span className="text-lg font-bold tabular-nums leading-none">
+                    {poster.board}
+                  </span>
+                </span>
+                <div className="space-y-2.5">
+                  <div className="space-y-0.5">
+                    <h3 className="text-base sm:text-lg font-semibold leading-snug">
+                      {poster.title}
+                    </h3>
+                    <p className="text-sm leading-snug text-muted-foreground">
+                      {poster.authors}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {poster.links.map((link, linkIndex) => (
+                      <a
+                        key={linkIndex}
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        // The chip reads "arXiv" on its own, so the paper it
+                        // belongs to is named here for anyone tabbing the list
+                        // or hearing the links read out in isolation.
+                        aria-label={`${poster.title} — ${link.label}`}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                      >
+                        {link.label}
+                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </li>
             ))}

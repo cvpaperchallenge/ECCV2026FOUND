@@ -147,6 +147,10 @@
             "text": "All poster boards are in the Malmömässan Exhibit Hall, and every board is numbered."
           },
           {
+            "label": "Board number.",
+            "text": "Every poster has an assigned board number, shown next to it in the list below. Please check the number assigned to your poster and put it up on that board only."
+          },
+          {
             "label": "Setup and takedown.",
             "text": "Please do not put your poster up before your time slot, and take it down at the end of the session."
           }

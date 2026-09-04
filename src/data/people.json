@@ -105,6 +105,7 @@
       {
         "title": "Affogato: Open-Vocabulary Affordance Grounding with Automated Data Generation at Scale",
         "authors": "Junha Lee, Eunha Park, Chunghyun Park, Dahyun Kang, Minsu Cho",
+        "board": 356,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2506.12009" },
           {
@@ -116,6 +117,7 @@
       {
         "title": "AI-based worker guidance in assembly and disassembly operations using multimodal ego/exo-centric data capture and structured task knowledge",
         "authors": "Vivek Chavan, Jörg Krüger",
+        "board": 357,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2608.22617" },
           {
@@ -127,6 +129,7 @@
       {
         "title": "BioVITA: Biological Dataset, Model, and Benchmark for Visual-Textual-Acoustic Alignment",
         "authors": "Risa Shinoda, Kaede Shiohara, Nakamasa Inoue, Kuniaki Saito, Hiroaki Santo, Fumio Okura",
+        "board": 358,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2603.23883" },
           {
@@ -138,6 +141,7 @@
       {
         "title": "Boba: Batched Simulation for Physics-Based Gaussian Digital Twins",
         "authors": "Yihan Pang, Hanxiao Jiang, Sushant Kondguli, Sarita Adve, Shenlong Wang",
+        "board": 359,
         "links": [
           {
             "label": "Project page",
@@ -148,6 +152,7 @@
       {
         "title": "CoMind: Understanding Collaborative Human Activity from Multiple Minds and Views",
         "authors": "Alexey Gavryushin, Dingxi Zhang, Zhao Huang, Alexandros Delitzas, Jiaqi Chen, Ben Ellis, Cedric Zöllner, Manthan Patel, Manuel Kaufmann, Marc Pollefeys, Xi Wang",
+        "board": 360,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2607.06691" },
           { "label": "Project page", "url": "https://comind.ethz.ch/" }
@@ -156,6 +161,7 @@
       {
         "title": "Dynamic Inverse Rendering for Enhanced Material-Lighting Decomposition",
         "authors": "Raza Yunus, Benjamin Ummenhofer, Jan Eric Lenssen, Eddy Ilg",
+        "board": 361,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2607.09329" },
           { "label": "Project page", "url": "https://razayunus.github.io/DIR" }
@@ -164,6 +170,7 @@
       {
         "title": "Gravity-aware partially calibrated absolute pose estimation from affine- or rotation-covariant features",
         "authors": "Marcus Valtonen Örnhag, Alberto Jaenal, Stefan Adalbjörnsson",
+        "board": 362,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2608.20056" }
         ]
@@ -171,6 +178,7 @@
       {
         "title": "Hybrid Gaussian Splatting for Novel Urban View Synthesis",
         "authors": "Mohamed Omran, Farhad Zanjani, Davide Abati, Jens Petersen, Amirhossein Habibian",
+        "board": 363,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2510.12308" }
         ]
@@ -178,6 +186,7 @@
       {
         "title": "ProactiveBench: Benchmarking Proactiveness in Multimodal Large Language Models",
         "authors": "Thomas De Min, Subhankar Roy, Stéphane Lathuilière, Elisa Ricci, Massimiliano Mancini",
+        "board": 364,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2603.19466" },
           {
@@ -189,6 +198,7 @@
       {
         "title": "Prosthesis-Aware 3D Human Pose Estimation: A Dataset and Benchmark for RSP Users",
         "authors": "Yilin Wen, Kechuan Dong, Fumiya Suginaka, Ken Endo, Yusuke Sugano",
+        "board": 365,
         "links": [
           {
             "label": "Project page",
@@ -199,6 +209,7 @@
       {
         "title": "Steerable Vision Transformers",
         "authors": "Jona Ruthardt, Manu Gaur, Deva Ramanan, Makarand Tapaswi, Yuki M. Asano",
+        "board": 366,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2604.02327" },
           {
@@ -210,6 +221,7 @@
       {
         "title": "XYZ-IBD: Benchmarking Robust 6D Object Pose Estimation under Real-World Industrial Complexity",
         "authors": "Junwen Huang, Jiaqi Hu, Peter KT Yu, Slobodan Ilic, Martin Sundermeyer, Benjamin Busam",
+        "board": 367,
         "links": [
           { "label": "arXiv", "url": "https://arxiv.org/abs/2506.00599" },
           { "label": "Project page", "url": "https://xyz-ibd.github.io/" }
