@@ -69,6 +69,17 @@ export const meta: Route.MetaFunction = () =>
     ],
   });
 
+/**
+ * Invited posters, alphabetically by title. Sorted here rather than left to
+ * the order of people.json so that a poster appended to the end of that file
+ * still lands in the right place. `localeCompare` rather than `<` because it
+ * compares letters instead of code points, which is what keeps "AI-based"
+ * beside "Affogato" instead of ahead of every lowercase-second-letter title.
+ */
+const invitedPosters = [...peopleData.program.invitedPosters].sort((a, b) =>
+  a.title.localeCompare(b.title, "en", { sensitivity: "base" }),
+);
+
 function Home() {
   const location = useLocation();
 
@@ -413,6 +424,62 @@ function Home() {
               );
             })}
           </div>
+        </section>
+
+        {/* Invited Poster Session — flat rows on hairlines, the same treatment
+            as the Program schedule above, because both are continuous lists of
+            the workshop's own content and neither needs a card to hold it.
+
+            The links sit under the authors rather than out at the right edge:
+            a poster can have more than one destination, and two chips in the
+            right-hand column would either squeeze the title on narrow screens
+            or reduce to a pair of identical arrows. Stacked, every chip can
+            keep its name at every width. Names are not uppercased like the
+            badges elsewhere on the page, because "ARXIV" would misspell a
+            proper noun. */}
+        <section id="posters" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Invited Poster Session</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-foreground/90">
+            The following {invitedPosters.length} posters have been invited to
+            the FOUND Workshop poster session.
+          </p>
+
+          <ol className="divide-y divide-border/50 border-y border-border/50">
+            {invitedPosters.map((poster, index) => (
+              <li key={index} className="space-y-2.5 py-5">
+                <div className="space-y-0.5">
+                  <h3 className="text-base sm:text-lg font-semibold leading-snug">
+                    {poster.title}
+                  </h3>
+                  <p className="text-sm leading-snug text-muted-foreground">
+                    {poster.authors}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {poster.links.map((link, linkIndex) => (
+                    <a
+                      key={linkIndex}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      // The chip reads "arXiv" on its own, so the paper it
+                      // belongs to is named here for anyone tabbing the list
+                      // or hearing the links read out in isolation.
+                      aria-label={`${poster.title} — ${link.label}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                    >
+                      {link.label}
+                      <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* Organizers */}
