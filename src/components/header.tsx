@@ -20,6 +20,7 @@ const navItems = [
   { name: "Overview", path: "/#about" },
   { name: "Program", path: "/#program" },
   { name: "Speakers", path: "/#speakers" },
+  { name: "Posters", path: "/#posters" },
   { name: "Organizers", path: "/#organizers" },
   { name: "Sponsors", path: "/#sponsors" },
   { name: "Contact", path: "/#contact" },
@@ -53,17 +54,23 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-6">
-          {/* Desktop Navigation — shown from lg, not md: seven items plus the
+          {/* Desktop Navigation — shown from lg, not md: eight items plus the
               logo do not fit on one line at 768px, where they used to wrap
-              mid-word. The sheet below covers everything narrower. */}
+              mid-word. The sheet below covers everything narrower.
+
+              At lg the row is tightened to px-3/gap-1, which is what buys room
+              for the eighth item: the comfortable px-4/gap-2 spacing needs
+              ~776px and lg leaves ~718px once the logo and theme toggle take
+              their share. From xl the container stops growing and the roomier
+              spacing fits again. */}
           <div className="hidden lg:flex">
             <NavigationMenu>
-              <NavigationMenuList className="gap-2">
+              <NavigationMenuList className="gap-1 xl:gap-2">
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.path}>
                     <NavigationMenuLink
                       asChild
-                      className="bg-transparent hover:bg-primary/10 font-medium transition-colors px-4 py-2 rounded-lg whitespace-nowrap"
+                      className="bg-transparent hover:bg-primary/10 font-medium transition-colors px-3 py-2 xl:px-4 rounded-lg whitespace-nowrap"
                     >
                       <Link to={item.path}>{item.name}</Link>
                     </NavigationMenuLink>

@@ -69,6 +69,39 @@ export const meta: Route.MetaFunction = () =>
     ],
   });
 
+/**
+ * Every board in the poster session, in board order: the invited posters and
+ * the three boards the sponsors present from. Sponsors are spaced through the
+ * run rather than grouped at one end, so that nobody can walk past "the
+ * sponsor corner" without meaning to, and listing the two together is what
+ * keeps this a complete map of boards 356–370 with no unexplained gaps.
+ *
+ * Board order rather than alphabetical order, so reading down the list is
+ * reading down the row of boards in the hall. The invited posters come out
+ * alphabetical anyway, because that is how their numbers were assigned across
+ * the boards the sponsors do not take — the ordering rule now lives in the
+ * numbering rather than in a sort, which is the safer place for it: a board
+ * number, once sent to an author, must not move.
+ *
+ * Each side keeps its own home. The posters carry their board in people.json,
+ * the sponsors carry theirs alongside their logo in workshop.json, and neither
+ * is copied into the other.
+ */
+const posterSessionRows = [
+  ...peopleData.program.invitedPosters.map((poster) => ({
+    kind: "poster" as const,
+    board: poster.board,
+    poster,
+  })),
+  ...workshopData.sponsors.sponsors
+    .filter((sponsor) => sponsor.board > 0)
+    .map((sponsor) => ({
+      kind: "sponsor" as const,
+      board: sponsor.board,
+      sponsor,
+    })),
+].sort((a, b) => a.board - b.board);
+
 function Home() {
   const location = useLocation();
 
@@ -290,8 +323,8 @@ function Home() {
               aria-hidden="true"
             />
             <span className="leading-relaxed">
-              All times are local to Malmö. The workshop takes place in
-              Malmömässan E1.
+              All times are local to Malmö. The talks take place in Malmömässan
+              E1; the poster session is in the Malmömässan Exhibit Hall.
             </span>
           </p>
 
@@ -314,7 +347,13 @@ function Home() {
                       type is the caption under it. Slots with nobody on stage
                       put the session name on the headline line instead, a step
                       smaller and softer so the names carry the section. Either
-                      way the first line stays level with the time chip. */}
+                      way the first line stays level with the time chip.
+
+                      The caption line under those stage-free slots is where a
+                      room goes when it differs from the one in the note above
+                      the schedule — the poster boards are not in E1, and a
+                      reader planning their morning should see that on the row
+                      itself rather than have to hunt for it. */}
                   <div className="space-y-0.5">
                     {item.presenter ? (
                       <>
@@ -326,9 +365,20 @@ function Home() {
                         </p>
                       </>
                     ) : (
-                      <p className="text-base font-semibold leading-snug text-foreground/70">
-                        {item.session}
-                      </p>
+                      <>
+                        <p className="text-base font-semibold leading-snug text-foreground/70">
+                          {item.session}
+                        </p>
+                        {item.location && (
+                          <p className="flex items-center gap-1.5 text-sm leading-snug text-muted-foreground">
+                            <MapPin
+                              className="h-3.5 w-3.5 shrink-0 text-primary"
+                              aria-hidden="true"
+                            />
+                            {item.location}
+                          </p>
+                        )}
+                      </>
                     )}
                   </div>
                 </li>
@@ -413,6 +463,170 @@ function Home() {
               );
             })}
           </div>
+        </section>
+
+        {/* Poster Session — flat rows on hairlines, the same treatment as the
+            Program schedule above, because both are continuous lists of the
+            workshop's own content and neither needs a card to hold it.
+
+            Sponsor boards are listed here with the posters rather than in a
+            section of their own. They are physically spaced through the same
+            run of boards, so a list that left them out would jump 358 to 360
+            and stop being a map of the hall; and a sponsor filed separately at
+            the foot of the page would be exactly as easy to walk past on the
+            site as at the end of a row. They are badged, though — an invited
+            poster and a sponsor's board reached the session by different
+            routes and the list should not blur that.
+
+            The links sit under the authors rather than out at the right edge:
+            a poster can have more than one destination, and two chips in the
+            right-hand column would either squeeze the title on narrow screens
+            or reduce to a pair of identical arrows. Stacked, every chip can
+            keep its name at every width. Names are not uppercased like the
+            badges elsewhere on the page, because "ARXIV" would misspell a
+            proper noun. */}
+        <section id="posters" className="space-y-8">
+          <div className="space-y-3">
+            <h2 className="font-bold">Poster Session</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {peopleData.program.invitedPosters.length} posters have been invited
+            to the FOUND Workshop poster session, joined by presentations from
+            the workshop&apos;s sponsors.
+          </p>
+
+          {/* Logistics ahead of the list: a presenter needs the hall and the
+              board size before they need to find their own row, and an
+              attendee needs the hall to know where to walk to — the talks are
+              in Malmömässan E1 but the boards are not. Left-bordered callout
+              because that is the shape this page already uses for practical
+              points that must not be missed, as in the CFP format notice. */}
+          <div className="border-l-2 border-primary/50 pl-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <Info
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold">
+                {
+                  workshopData.schedule.presenterGuidelines.posterPresentation
+                    .title
+                }
+              </h3>
+            </div>
+            <p className="text-base leading-relaxed text-foreground/80">
+              {
+                workshopData.schedule.presenterGuidelines.posterPresentation
+                  .intro
+              }
+            </p>
+            <ul className="space-y-2.5">
+              {workshopData.schedule.presenterGuidelines.posterPresentation.points.map(
+                (point, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <p className="text-base leading-relaxed">
+                      <span className="font-semibold text-foreground">
+                        {point.label}
+                      </span>{" "}
+                      <span className="text-foreground/80">{point.text}</span>
+                    </p>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
+
+          <ol className="divide-y divide-border/50 border-y border-border/50">
+            {posterSessionRows.map((row) => (
+              <li
+                key={row.board}
+                className="grid gap-x-6 gap-y-3 py-5 sm:grid-cols-[8rem_1fr] sm:items-baseline"
+              >
+                {/* The board number takes the left column the Program schedule
+                    gives its time chip, so a presenter hunting for their own
+                    board reads down one edge instead of through fifteen rows.
+                    It is bigger and bolder than the time chip because it is
+                    the one thing on the row someone has to act on, and
+                    tabular-nums keeps the digits in a column. Sponsors take
+                    the same chip as the posters: the column is a map of the
+                    hall, and one board is as findable as the next. */}
+                <span className="justify-self-start inline-flex items-baseline gap-2 whitespace-nowrap rounded-lg bg-primary/10 px-3 py-2 text-primary sm:w-full sm:justify-center">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest opacity-70">
+                    Board
+                  </span>
+                  <span className="text-lg font-bold tabular-nums leading-none">
+                    {row.board}
+                  </span>
+                </span>
+                {row.kind === "poster" ? (
+                  <div className="space-y-2.5">
+                    <div className="space-y-0.5">
+                      <h3 className="text-base sm:text-lg font-semibold leading-snug">
+                        {row.poster.title}
+                      </h3>
+                      <p className="text-sm leading-snug text-muted-foreground">
+                        {row.poster.authors}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {row.poster.links.map((link, linkIndex) => (
+                        <a
+                          key={linkIndex}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          // The chip reads "arXiv" on its own, so the paper it
+                          // belongs to is named here for anyone tabbing the
+                          // list or hearing the links read out in isolation.
+                          aria-label={`${row.poster.title} — ${link.label}`}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                        >
+                          {link.label}
+                          <ExternalLink
+                            className="h-3 w-3"
+                            aria-hidden="true"
+                          />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2.5">
+                    <div className="space-y-0.5">
+                      {/* The badge rides on the name line rather than out at
+                          the right edge, so it cannot be missed by anyone
+                          reading only the headline of each row. Same pill as
+                          the closed-call marker further down the page. */}
+                      <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-base sm:text-lg font-semibold leading-snug">
+                        {row.sponsor.name}
+                        <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                          Sponsor
+                        </span>
+                      </h3>
+                      <p className="text-sm leading-snug text-muted-foreground">
+                        Company introduction and research showcase
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href={row.sponsor.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${row.sponsor.name} — website`}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                      >
+                        Website
+                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* Organizers */}

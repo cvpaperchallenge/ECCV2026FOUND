@@ -63,48 +63,56 @@
             "time": "08:30 – 08:45",
             "session": "Opening Remarks",
             "presenter": "Yoshihiro Fukuhara",
+            "location": "",
             "slides": ""
           },
           {
             "time": "08:45 – 09:15",
             "session": "Invited Talk 1",
             "presenter": "Iro Armeni",
+            "location": "",
             "slides": ""
           },
           {
             "time": "09:15 – 09:45",
             "session": "Invited Talk 2",
             "presenter": "Amir Bar",
+            "location": "",
             "slides": ""
           },
           {
             "time": "09:45 – 10:00",
             "session": "Short Break",
             "presenter": "",
+            "location": "",
             "slides": ""
           },
           {
             "time": "10:00 – 10:30",
             "session": "Invited Talk 3",
             "presenter": "Anastasia Varava",
+            "location": "",
             "slides": ""
           },
           {
             "time": "10:30 – 11:00",
             "session": "Invited Talk 4",
             "presenter": "Marc Pollefeys",
+            "location": "",
             "slides": ""
           },
           {
             "time": "11:00 – 11:15",
             "session": "Closing Remarks",
             "presenter": "Risa Shinoda",
+            "location": "",
             "slides": ""
           },
           {
             "time": "11:30 – 12:30",
             "session": "Poster Session",
             "presenter": "",
+            "location": "Malmömässan Exhibit Hall",
             "slides": ""
           }
         ]
@@ -128,12 +136,24 @@
       },
       "posterPresentation": {
         "title": "Poster Presentation Guidelines",
-        "content": "Posters will be displayed during the designated poster session.",
-        "guidelines": [
-          "Maximum poster size: A0 (841mm x 1189mm)",
-          "Portrait orientation is recommended",
-          "Set up your poster 30 minutes before the session starts",
-          "Be present at your poster during the designated session time"
+        "intro": "Practical details for invited presenters, as confirmed by the ECCV 2026 organizers.",
+        "points": [
+          {
+            "label": "Poster size.",
+            "text": "140 cm × 100 cm (55.12 in × 39.37 in), landscape format. This matches the ECCV 2026 main conference standard. Please note the landscape orientation when preparing your poster."
+          },
+          {
+            "label": "Location.",
+            "text": "All poster boards are in the Malmömässan Exhibit Hall, and every board is numbered."
+          },
+          {
+            "label": "Board number.",
+            "text": "Every poster has an assigned board number, shown next to it in the list below. Please check the number assigned to your poster and put it up on that board only."
+          },
+          {
+            "label": "Setup and takedown.",
+            "text": "Please do not put your poster up before your time slot, and take it down at the end of the session."
+          }
         ]
       },
       "technicalRequirements": {
@@ -223,19 +243,22 @@
         "name": "Sansan",
         "logo": "/sponsors/sansan.png",
         "url": "https://www.corp-sansan.com/",
-        "padding": 56
+        "padding": 56,
+        "board": 359
       },
       {
         "name": "SB Intuitions",
         "logo": "/sponsors/sb-intuitions.png",
         "url": "https://www.sbintuitions.co.jp/en/",
-        "padding": 24
+        "padding": 24,
+        "board": 363
       },
       {
         "name": "CADDi",
         "logo": "/sponsors/caddi.png",
         "url": "https://caddi.com/en-us/",
-        "padding": 72
+        "padding": 72,
+        "board": 367
       }
     ]
   },

@@ -75,6 +75,12 @@ export function Footer() {
               Speakers
             </Link>
             <Link
+              to="/#posters"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+            >
+              Posters
+            </Link>
+            <Link
               to="/#organizers"
               className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
             >
