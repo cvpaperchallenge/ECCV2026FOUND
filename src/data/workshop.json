@@ -243,19 +243,22 @@
         "name": "Sansan",
         "logo": "/sponsors/sansan.png",
         "url": "https://www.corp-sansan.com/",
-        "padding": 56
+        "padding": 56,
+        "board": 359
       },
       {
         "name": "SB Intuitions",
         "logo": "/sponsors/sb-intuitions.png",
         "url": "https://www.sbintuitions.co.jp/en/",
-        "padding": 24
+        "padding": 24,
+        "board": 363
       },
       {
         "name": "CADDi",
         "logo": "/sponsors/caddi.png",
         "url": "https://caddi.com/en-us/",
-        "padding": 72
+        "padding": 72,
+        "board": 367
       }
     ]
   },

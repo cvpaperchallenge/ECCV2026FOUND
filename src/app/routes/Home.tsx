@@ -70,15 +70,40 @@ export const meta: Route.MetaFunction = () =>
   });
 
 /**
- * Invited posters, alphabetically by title. Sorted here rather than left to
- * the order of people.json so that a poster appended to the end of that file
- * still lands in the right place. `localeCompare` rather than `<` because it
- * compares letters instead of code points, which is what keeps "AI-based"
- * beside "Affogato" instead of ahead of every lowercase-second-letter title.
+ * Every board in the poster session, in board order: the invited posters and
+ * the three boards the sponsors present from. Sponsors are spaced through the
+ * run rather than grouped at one end, so that nobody can walk past "the
+ * sponsor corner" without meaning to, and listing the two together is what
+ * keeps this a complete map of boards 356–370 with no unexplained gaps.
+ *
+ * Board order rather than alphabetical order, so reading down the list is
+ * reading down the row of boards in the hall. The invited posters come out
+ * alphabetical anyway, because that is how their numbers were assigned across
+ * the boards the sponsors do not take — the ordering rule now lives in the
+ * numbering rather than in a sort, which is the safer place for it: a board
+ * number, once sent to an author, must not move.
+ *
+ * Each side keeps its own home. The posters carry their board in people.json,
+ * the sponsors carry theirs alongside their logo in workshop.json, and neither
+ * is copied into the other.
  */
-const invitedPosters = [...peopleData.program.invitedPosters].sort((a, b) =>
-  a.title.localeCompare(b.title, "en", { sensitivity: "base" }),
-);
+const posterSessionRows = [
+  ...peopleData.program.invitedPosters.map((poster) => ({
+    kind: "poster" as const,
+    board: poster.board,
+    poster,
+  })),
+  ...workshopData.sponsors.sponsors
+    .filter((sponsor) => sponsor.board > 0)
+    .map((sponsor) => ({
+      kind: "sponsor" as const,
+      board: sponsor.board,
+      sponsor,
+    })),
+].sort((a, b) => a.board - b.board);
+
+const firstBoard = posterSessionRows[0]?.board;
+const lastBoard = posterSessionRows[posterSessionRows.length - 1]?.board;
 
 function Home() {
   const location = useLocation();
@@ -443,9 +468,18 @@ function Home() {
           </div>
         </section>
 
-        {/* Invited Poster Session — flat rows on hairlines, the same treatment
-            as the Program schedule above, because both are continuous lists of
-            the workshop's own content and neither needs a card to hold it.
+        {/* Poster Session — flat rows on hairlines, the same treatment as the
+            Program schedule above, because both are continuous lists of the
+            workshop's own content and neither needs a card to hold it.
+
+            Sponsor boards are listed here with the posters rather than in a
+            section of their own. They are physically spaced through the same
+            run of boards, so a list that left them out would jump 358 to 360
+            and stop being a map of the hall; and a sponsor filed separately at
+            the foot of the page would be exactly as easy to walk past on the
+            site as at the end of a row. They are badged, though — an invited
+            poster and a sponsor's board reached the session by different
+            routes and the list should not blur that.
 
             The links sit under the authors rather than out at the right edge:
             a poster can have more than one destination, and two chips in the
@@ -456,13 +490,15 @@ function Home() {
             proper noun. */}
         <section id="posters" className="space-y-8">
           <div className="space-y-3">
-            <h2 className="font-bold">Invited Poster Session</h2>
+            <h2 className="font-bold">Poster Session</h2>
             <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
           </div>
 
           <p className="text-lg leading-relaxed text-foreground/90">
-            The following {invitedPosters.length} posters have been invited to
-            the FOUND Workshop poster session.
+            {peopleData.program.invitedPosters.length} posters have been invited
+            to the FOUND Workshop poster session, joined by presentations from
+            the workshop&apos;s sponsors. Boards {firstBoard}–{lastBoard},
+            listed here in the order they run.
           </p>
 
           {/* Logistics ahead of the list: a presenter needs the hall and the
@@ -508,53 +544,90 @@ function Home() {
           </div>
 
           <ol className="divide-y divide-border/50 border-y border-border/50">
-            {invitedPosters.map((poster, index) => (
+            {posterSessionRows.map((row) => (
               <li
-                key={index}
+                key={row.board}
                 className="grid gap-x-6 gap-y-3 py-5 sm:grid-cols-[8rem_1fr] sm:items-baseline"
               >
                 {/* The board number takes the left column the Program schedule
                     gives its time chip, so a presenter hunting for their own
-                    board reads down one edge instead of through twelve titles.
+                    board reads down one edge instead of through fifteen rows.
                     It is bigger and bolder than the time chip because it is
                     the one thing on the row someone has to act on, and
-                    tabular-nums keeps the digits in a column. */}
+                    tabular-nums keeps the digits in a column. Sponsors take
+                    the same chip as the posters: the column is a map of the
+                    hall, and one board is as findable as the next. */}
                 <span className="justify-self-start inline-flex items-baseline gap-2 whitespace-nowrap rounded-lg bg-primary/10 px-3 py-2 text-primary sm:w-full sm:justify-center">
                   <span className="text-[10px] font-semibold uppercase tracking-widest opacity-70">
                     Board
                   </span>
                   <span className="text-lg font-bold tabular-nums leading-none">
-                    {poster.board}
+                    {row.board}
                   </span>
                 </span>
-                <div className="space-y-2.5">
-                  <div className="space-y-0.5">
-                    <h3 className="text-base sm:text-lg font-semibold leading-snug">
-                      {poster.title}
-                    </h3>
-                    <p className="text-sm leading-snug text-muted-foreground">
-                      {poster.authors}
-                    </p>
+                {row.kind === "poster" ? (
+                  <div className="space-y-2.5">
+                    <div className="space-y-0.5">
+                      <h3 className="text-base sm:text-lg font-semibold leading-snug">
+                        {row.poster.title}
+                      </h3>
+                      <p className="text-sm leading-snug text-muted-foreground">
+                        {row.poster.authors}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {row.poster.links.map((link, linkIndex) => (
+                        <a
+                          key={linkIndex}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          // The chip reads "arXiv" on its own, so the paper it
+                          // belongs to is named here for anyone tabbing the
+                          // list or hearing the links read out in isolation.
+                          aria-label={`${row.poster.title} — ${link.label}`}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+                        >
+                          {link.label}
+                          <ExternalLink
+                            className="h-3 w-3"
+                            aria-hidden="true"
+                          />
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {poster.links.map((link, linkIndex) => (
+                ) : (
+                  <div className="space-y-2.5">
+                    <div className="space-y-0.5">
+                      {/* The badge rides on the name line rather than out at
+                          the right edge, so it cannot be missed by anyone
+                          reading only the headline of each row. Same pill as
+                          the closed-call marker further down the page. */}
+                      <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-base sm:text-lg font-semibold leading-snug">
+                        {row.sponsor.name}
+                        <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                          Sponsor
+                        </span>
+                      </h3>
+                      <p className="text-sm leading-snug text-muted-foreground">
+                        Company introduction and research showcase
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
                       <a
-                        key={linkIndex}
-                        href={link.url}
+                        href={row.sponsor.url}
                         target="_blank"
                         rel="noreferrer"
-                        // The chip reads "arXiv" on its own, so the paper it
-                        // belongs to is named here for anyone tabbing the list
-                        // or hearing the links read out in isolation.
-                        aria-label={`${poster.title} — ${link.label}`}
+                        aria-label={`${row.sponsor.name} — website`}
                         className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
                       >
-                        {link.label}
+                        Website
                         <ExternalLink className="h-3 w-3" aria-hidden="true" />
                       </a>
-                    ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </li>
             ))}
           </ol>
