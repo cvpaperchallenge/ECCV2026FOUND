@@ -102,9 +102,6 @@ const posterSessionRows = [
     })),
 ].sort((a, b) => a.board - b.board);
 
-const firstBoard = posterSessionRows[0]?.board;
-const lastBoard = posterSessionRows[posterSessionRows.length - 1]?.board;
-
 function Home() {
   const location = useLocation();
 
@@ -497,8 +494,7 @@ function Home() {
           <p className="text-lg leading-relaxed text-foreground/90">
             {peopleData.program.invitedPosters.length} posters have been invited
             to the FOUND Workshop poster session, joined by presentations from
-            the workshop&apos;s sponsors. Boards {firstBoard}–{lastBoard},
-            listed here in the order they run.
+            the workshop&apos;s sponsors.
           </p>
 
           {/* Logistics ahead of the list: a presenter needs the hall and the
