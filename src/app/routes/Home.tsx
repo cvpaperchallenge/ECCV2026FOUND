@@ -5,6 +5,7 @@ import {
   ExternalLink,
   Info,
   CalendarPlus,
+  CircleCheckBig,
   Megaphone,
   LayoutPanelTop,
   Eye,
@@ -179,6 +180,30 @@ function Home() {
               )}
               <p className="text-sm md:text-lg text-muted-foreground font-medium">
                 {workshopData.home.subtitle}
+              </p>
+            </div>
+
+            {/* Closing status — the workshop has happened, and this is where
+                the page says so. It sits above the date and venue so those two
+                cards read as a record rather than an invitation, which is
+                enough on its own: the rest of the page can stay exactly as it
+                was written.
+
+                Primary colours rather than the muted grey of the "Closed"
+                badges further down — a workshop that took place is good news,
+                a deadline that lapsed is not. Badge and thanks share one flex
+                column so the line reads as the badge's caption instead of
+                drifting off as a fourth title. */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-[10px] md:text-[11px] font-semibold uppercase tracking-widest text-primary">
+                <CircleCheckBig
+                  className="h-3.5 w-3.5 shrink-0"
+                  aria-hidden="true"
+                />
+                {workshopData.home.conclusion.badge}
+              </div>
+              <p className="max-w-xl text-sm md:text-base leading-relaxed text-muted-foreground">
+                {workshopData.home.conclusion.thanks}
               </p>
             </div>
 
